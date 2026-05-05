@@ -1,64 +1,127 @@
 ---
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <nav class="mx-auto max-w-7xl px-4 xl:px-8 py-4">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <nav class="mx-auto max-w-7xl px-4 xl:px-8 py-5">
     <div class="flex items-center justify-between">
-      <a href="/" class="flex-shrink-0">
+      <a href="/" class="flex-shrink-0 transition-transform duration-300 hover:scale-[1.02]">
         <img src="https://www.tazamaafricasafari.com/assets/images/logos/tazama-gold.png" alt="Tazama Africa" class="h-10 md:h-12" />
       </a>
       
-      <div class="hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full px-2 py-1.5 gap-1">
-        <a href="#contact" class="rounded-full bg-[#A87133] px-5 py-2 font-raleway text-sm font-semibold text-white transition-colors hover:bg-primary/90">
-          Plan My Trip
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#contact" class="group relative rounded-full bg-[#A87133] px-6 py-2.5 font-raleway text-sm font-semibold text-white overflow-hidden transition-all duration-300 hover:bg-primary/90">
+          <span class="relative z-10">Plan My Trip</span>
         </a>
-        <a href="/contact" class="px-5 py-2 font-raleway text-sm font-medium text-stone-800 transition-colors hover:text-primary">
-          Contact Us
+        <a href="/contact" class="group relative px-5 py-2.5 font-raleway text-sm font-medium text-stone-800 transition-colors hover:text-primary">
+          <span class="relative z-10">Contact Us</span>
+          <span class="absolute bottom-1 left-5 right-5 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
         </a>
-        <button id="menu-toggle-desktop" class="ml-2 p-2 rounded-full hover:bg-white/50 transition-colors" aria-label="Toggle menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
+        
+        <button id="menu-toggle-desktop" class="group p-2 rounded-full hover:bg-stone-100 transition-colors" aria-label="Toggle menu">
+          <div class="w-6 h-5 flex flex-col justify-between">
+            <span class="hamburger-line w-full h-0.5 bg-stone-800 rounded-full transition-all duration-300 origin-center"></span>
+            <span class="hamburger-line w-full h-0.5 bg-stone-800 rounded-full transition-all duration-300 origin-center"></span>
+            <span class="hamburger-line w-full h-0.5 bg-stone-800 rounded-full transition-all duration-300 origin-center"></span>
+          </div>
         </button>
       </div>
       
-      <button id="menu-toggle-mobile" class="md:hidden p-2 bg-white/80 backdrop-blur-md rounded-full" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
-        </svg>
+      <button id="menu-toggle-mobile" class="md:hidden p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Toggle menu">
+        <div class="w-6 h-5 flex flex-col justify-between">
+          <span class="mobile-line w-full h-0.5 bg-white rounded-full transition-all duration-300 origin-center"></span>
+          <span class="mobile-line w-full h-0.5 bg-white rounded-full transition-all duration-300 origin-center"></span>
+          <span class="mobile-line w-full h-0.5 bg-white rounded-full transition-all duration-300 origin-center"></span>
+        </div>
       </button>
     </div>
   </nav>
   
-  <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-darker/95 backdrop-blur-lg">
-    <div class="flex flex-col items-center justify-center h-full gap-8 text-white">
-      <a href="/" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Home</a>
-      <a href="#about" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">About</a>
-      <a href="#destinations" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Destinations</a>
-      <a href="#tours" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Tours</a>
-      <a href="#lodges" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Lodges</a>
-      <a href="#contact" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Contact</a>
-      <a href="#contact" class="mt-4 rounded-full bg-[#A87133] px-8 py-3 text-lg font-raleway font-semibold text-white transition-colors hover:bg-primary/90">
-        Plan My Trip
-      </a>
+  <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-darker">
+    <div class="absolute inset-0 bg-gradient-to-b from-darker via-darker/95 to-darker"></div>
+    
+    <div class="relative z-50 flex flex-col items-center justify-center h-full px-8">
+      <div class="mb-12">
+        <img src="https://www.tazamaafricasafari.com/assets/images/logos/tazama-gold.png" alt="Tazama Africa" class="h-14 mb-6 mx-auto" />
+        <div class="w-16 h-0.5 bg-primary mx-auto"></div>
+      </div>
+      
+      <nav class="flex flex-col items-center gap-2">
+        <a href="/" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.1s">Home</a>
+        <a href="#about" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.2s">About</a>
+        <a href="#destinations" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.3s">Destinations</a>
+        <a href="#tours" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.4s">Tours</a>
+        <a href="#lodges" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.5s">Lodges</a>
+        <a href="#contact" class="mobile-link text-3xl font-raleway font-bold text-white hover:text-primary transition-colors py-3 opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.6s">Contact</a>
+      </nav>
+      
+      <div class="absolute bottom-12 left-0 right-0 px-8 text-center opacity-0 translate-y-4" style="animation: fadeSlideIn 0.5s ease forwards 0.7s">
+        <a href="#contact" class="inline-block rounded-full bg-[#A87133] px-10 py-4 text-lg font-raleway font-semibold text-white transition-colors hover:bg-primary/90">
+          Plan My Trip
+        </a>
+        <p class="text-stone-500 text-sm mt-6">+255 754 922 334</p>
+      </div>
     </div>
   </div>
 </header>
 
+<style>
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .mobile-menu-open .mobile-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+  
+  .mobile-menu-open .mobile-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  
+  .mobile-menu-open .mobile-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+  
+  .desktop-menu-open .hamburger-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+  
+  .desktop-menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  
+  .desktop-menu-open .hamburger-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+</style>
+
 <script>
-  const menuToggleMobile = document.getElementById('menu-toggle-mobile');
+  const header = document.getElementById('main-header');
   const menuToggleDesktop = document.getElementById('menu-toggle-desktop');
+  const menuToggleMobile = document.getElementById('menu-toggle-mobile');
   const mobileMenu = document.getElementById('mobile-menu');
+  
   let menuOpen = false;
   
   function toggleMenu() {
     menuOpen = !menuOpen;
-    mobileMenu?.classList.toggle('hidden');
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    if (menuOpen) {
+      mobileMenu?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('mobile-menu-open');
+      menuToggleMobile?.classList.add('mobile-menu-open');
+      menuToggleDesktop?.classList.add('desktop-menu-open');
+    } else {
+      mobileMenu?.classList.add('hidden');
+      document.body.style.overflow = '';
+      document.documentElement.classList.remove('mobile-menu-open');
+      menuToggleMobile?.classList.remove('mobile-menu-open');
+      menuToggleDesktop?.classList.remove('desktop-menu-open');
+    }
   }
   
   menuToggleMobile?.addEventListener('click', toggleMenu);
@@ -69,6 +132,22 @@
       menuOpen = false;
       mobileMenu?.classList.add('hidden');
       document.body.style.overflow = '';
+      document.documentElement.classList.remove('mobile-menu-open');
+      menuToggleMobile?.classList.remove('mobile-menu-open');
+      menuToggleDesktop?.classList.remove('desktop-menu-open');
     });
+  });
+  
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll > 50) {
+      header?.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+    } else {
+      header?.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+    }
+    
+    lastScroll = currentScroll;
   });
 </script>

@@ -1,6 +1,8 @@
 backend:
   name: test-repo
 
+local_backend: true
+
 media_folder: "src/assets/blog"
 public_folder: "/assets/blog"
 

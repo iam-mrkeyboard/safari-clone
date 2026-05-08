@@ -7,5 +7,35 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+  <script>
+    window.CMS.init({
+      config: {
+        backend: {
+          name: 'test-repo'
+        },
+        local_backend: true,
+        media_folder: "src/assets/blog",
+        public_folder: "/assets/blog",
+        collections: [
+          {
+            name: "blog",
+            label: "Blog Posts",
+            folder: "src/content/blog",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Date", name: "date", widget: "datetime" },
+              { label: "Category", name: "category", widget: "string" },
+              { label: "Thumbnail URL", name: "thumbnail", widget: "string", required: false },
+              { label: "Author", name: "author", widget: "string" },
+              { label: "Description", name: "description", widget: "text", required: false },
+              { label: "Body", name: "body", widget: "markdown" }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>

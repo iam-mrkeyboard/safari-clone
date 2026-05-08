@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout title="Blog - Tazama Africa Safaris">
+  <section class="relative py-20 md:py-28 bg-stone-900">
+    <div class="absolute inset-0 overflow-hidden">
+      <img
+        src="https://www.tazamaafricasafari.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Foot9i5yy%2Fproduction%2Fcb734a7c20d216b08fe0db8ed4082e8f45e084e2-1900x1000.jpg&w=1920&q=80"
+        alt="Blog Hero"
+        class="w-full h-full object-cover opacity-30"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/70 to-transparent"></div>
+    </div>
+    <div class="relative container mx-auto px-4">
+      <div class="max-w-3xl">
+        <span class="inline-block text-gold text-sm tracking-[0.2em] uppercase mb-4">Travel Stories</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">Latest From Tazama</h1>
+        <p class="text-lg text-stone-300">Discover travel tips, safari stories, and adventure guides from the heart of Africa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-stone-50">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <article class="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lift">
+            <a href={`/blogs/${post.slug}`} class="block">
+              <div class="relative aspect-[16/10] overflow-hidden">
+                <img
+                  src={post.data.thumbnail ? `https://www.tazamaafricasafari.com/_next/image?url=${encodeURIComponent(post.data.thumbnail)}&w=1920&q=80` : '/assets/images/gallery/tanzania.jpg'}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 bg-gold text-white text-xs font-medium uppercase tracking-wide rounded">
+                    {post.data.category}
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 text-sm text-stone-500 mb-3">
+                  <time datetime={post.data.date.toISOString()}>
+                    {formatDate(post.data.date)}
+                  </time>
+                  <span class="w-1 h-1 bg-stone-300 rounded-full"></span>
+                  <span>{post.data.author}</span>
+                </div>
+                <h2 class="text-xl font-serif text-stone-800 group-hover:text-gold transition-colors mb-3 line-clamp-2">
+                  {post.data.title}
+                </h2>
+                {post.data.description && (
+                  <p class="text-stone-600 text-sm line-clamp-2">{post.data.description}</p>
+                )}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

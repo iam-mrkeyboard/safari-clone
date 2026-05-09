@@ -4,19 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager - Tazama Africa Safaris</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script>
-    window.CMS_MANUAL_INIT = true;
-  </script>
   <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
   <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+
+    window.CMS_MANUAL_INIT = true;
     window.CMS.init({
       config: {
         backend: {
-          name: 'test-repo'
+          name: "github",
+          repo: "iam-mrkeyboard/safari-clone",
+          branch: "main",
+          base_url: "https://api.netlify.com"
         },
-        local_backend: true,
         media_folder: "src/assets/blog",
         public_folder: "/assets/blog",
         collections: [
@@ -147,8 +158,10 @@
               { label: "Duration", name: "duration", widget: "string" },
               { label: "Price (numbers only)", name: "price", widget: "string" },
               { label: "Badge", name: "badge", widget: "string", required: false },
+              { label: "Category", name: "category", widget: "string" },
               { label: "Link", name: "link", widget: "string" },
               { label: "Order", name: "order", widget: "number", value_type: "int" },
+              { label: "Body", name: "body", widget: "markdown" },
             ],
           },
           {

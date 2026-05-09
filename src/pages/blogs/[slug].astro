@@ -30,6 +30,7 @@ function formatDate(date: Date) {
         src={post.data.thumbnail ? `https://www.tazamaafricasafari.com/_next/image?url=${encodeURIComponent(post.data.thumbnail)}&w=1920&q=80` : '/assets/images/gallery/tanzania.jpg'}
         alt={post.data.title}
         class="w-full h-full object-cover"
+        loading="lazy" decoding="async"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent"></div>
       <div class="absolute bottom-0 left-0 right-0 pb-8">

@@ -17,7 +17,7 @@ function formatPrice(price: string) {
 <Layout title="Safaris - Tazama Africa Safaris">
   <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="https://cdn.sanity.io/images/oot9i5yy/production/274cb089b51d6a9b9ab26d75e9b97180c2172d5a-1920x1280.jpg" alt="" class="w-full h-full object-cover opacity-40" />
+      <img src="https://cdn.sanity.io/images/oot9i5yy/production/274cb089b51d6a9b9ab26d75e9b97180c2172d5a-1920x1280.jpg" alt="" class="w-full h-full object-cover opacity-40" loading="lazy" decoding="async" />
       <div class="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900"></div>
     </div>
     <div class="relative container mx-auto px-4 text-center">
@@ -39,7 +39,7 @@ function formatPrice(price: string) {
           {safaris.map((tour) => (
             <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift">
               <div class="relative overflow-hidden aspect-[16/12]">
-                <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 <div class="absolute top-4 left-4 flex gap-2">
                   {tour.data.badge && (

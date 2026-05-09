@@ -21,7 +21,7 @@ function formatPrice(price: string) {
       {tours.map((tour) => (
         <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-lighter shadow-lg card-lift">
           <div class="relative overflow-hidden aspect-[16/10]">
-            <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
             {tour.data.badge && (
               <span class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
             )}

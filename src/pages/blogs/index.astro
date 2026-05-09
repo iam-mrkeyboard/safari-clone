@@ -23,6 +23,7 @@ function formatDate(date: Date) {
         src="https://www.tazamaafricasafari.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Foot9i5yy%2Fproduction%2Fcb734a7c20d216b08fe0db8ed4082e8f45e084e2-1900x1000.jpg&w=1920&q=80"
         alt="Blog Hero"
         class="w-full h-full object-cover opacity-30"
+        loading="lazy" decoding="async"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/70 to-transparent"></div>
     </div>
@@ -46,6 +47,7 @@ function formatDate(date: Date) {
                   src={post.data.thumbnail ? `https://www.tazamaafricasafari.com/_next/image?url=${encodeURIComponent(post.data.thumbnail)}&w=1920&q=80` : '/assets/images/gallery/tanzania.jpg'}
                   alt={post.data.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy" decoding="async"
                 />
                 <div class="absolute top-4 left-4">
                   <span class="px-3 py-1 bg-gold text-white text-xs font-medium uppercase tracking-wide rounded">

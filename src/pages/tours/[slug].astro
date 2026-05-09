@@ -95,7 +95,7 @@ const whatsappUrl = 'https://wa.me/255754922334?text=I\'m interested in ' + enco
 
 <Layout title={tour.data.title + ' - Tazama Africa Safari'}>
   <section class="relative h-[50vh] md:h-[60vh] overflow-hidden">
-    <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover" />
+    <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover" loading="lazy" decoding="async" />
     <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 pb-8">
       <div class="container mx-auto px-4">

@@ -14,6 +14,28 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-raleway;
   }
+
+  img:not([loading="eager"]):not([src$=".svg"]),
+  video {
+    background: #e7e5e4;
+    animation: blurIn 0.5s ease-out forwards;
+  }
+
+  @keyframes blurIn {
+    0% {
+      filter: blur(16px);
+      opacity: 0.2;
+      transform: scale(1.05);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      filter: blur(0);
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
   
   ::selection {
     @apply bg-primary/30 text-stone-900;

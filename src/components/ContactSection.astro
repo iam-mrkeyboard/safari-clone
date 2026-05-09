@@ -5,7 +5,7 @@ const { contact } = site.data;
 ---
 
 <section id="contact" class="relative py-20 lg:py-28">
-  <img src={contact.image} alt="" class="absolute inset-0 h-full w-full object-cover brightness-[0.4]" />
+  <img src={contact.image} alt="" class="absolute inset-0 h-full w-full object-cover brightness-[0.4]" loading="lazy" decoding="async" />
   
   <div class="relative z-10 mx-auto max-w-5xl px-4 xl:px-8 text-center text-white">
     <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold mb-6">{contact.heading}</h2>

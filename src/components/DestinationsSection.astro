@@ -16,7 +16,7 @@ const destinations = (await getCollection('destinations')).sort(
     <div class="grid grid-cols-2 gap-5 md:gap-8">
       {destinations.map((dest) => (
         <a href={dest.data.link} class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-          <img src={dest.data.image} alt={dest.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <img src={dest.data.image} alt={dest.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <h3 class="text-2xl md:text-3xl font-raleway font-bold text-white mb-1">{dest.data.title}</h3>

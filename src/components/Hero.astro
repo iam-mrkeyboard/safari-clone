@@ -5,7 +5,7 @@ const hero = site.data.hero;
 ---
 
 <section class="relative h-screen overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute inset-0 h-full w-full object-cover">
+  <video autoplay muted loop playsinline preload="none" poster="https://res.cloudinary.com/drhl0yu7y/image/upload/v1730884908/call-to-action_hyqnoa.webp" class="absolute inset-0 h-full w-full object-cover">
     <source src={hero.video_url} type="video/mp4">
   </video>
   

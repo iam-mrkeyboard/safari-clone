@@ -18,23 +18,17 @@
   img:not([loading="eager"]):not([src$=".svg"]),
   video {
     background: #e7e5e4;
-    animation: blurIn 0.5s ease-out forwards;
+    filter: blur(16px);
+    opacity: 0.3;
+    transform: scale(1.05);
+    transition: filter 0.5s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
   }
 
-  @keyframes blurIn {
-    0% {
-      filter: blur(16px);
-      opacity: 0.2;
-      transform: scale(1.05);
-    }
-    60% {
-      opacity: 1;
-    }
-    100% {
-      filter: blur(0);
-      opacity: 1;
-      transform: scale(1);
-    }
+  img:not([loading="eager"]):not([src$=".svg"]).loaded,
+  video.loaded {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
   }
   
   ::selection {

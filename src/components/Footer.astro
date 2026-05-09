@@ -10,20 +10,20 @@ const { footer } = site.data;
       <div>
         <h3 class="text-2xl font-raleway font-semibold mb-4">{footer.newsletter_heading}</h3>
         <p class="text-stone-400 mb-6">{footer.newsletter_text}</p>
-        <form class="flex gap-3">
-          <input type="email" placeholder="Email address" class="flex-1 rounded-full bg-white/10 px-6 py-3 text-white placeholder-stone-500 outline-none focus:ring-2 focus:ring-primary transition-colors" />
-          <button type="submit" class="rounded-full bg-[#A87133] px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary/90">{footer.newsletter_button}</button>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Email address" class="w-full sm:flex-1 rounded-full bg-white/10 px-6 py-3 text-white placeholder-stone-500 outline-none focus:ring-2 focus:ring-primary transition-colors" />
+          <button type="submit" class="w-full sm:w-auto rounded-full bg-[#A87133] px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary/90">{footer.newsletter_button}</button>
         </form>
       </div>
       
       <div>
         <h4 class="text-xl font-raleway font-semibold mb-4">{footer.cta_heading}</h4>
         <p class="text-stone-400 mb-6">{footer.cta_text}</p>
-        <a href={footer.cta_button_link} class="inline-block rounded-full bg-[#A87133] px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary/90">{footer.cta_button}</a>
+        <a href={footer.cta_button_link} class="inline-block w-full sm:w-auto text-center rounded-full bg-[#A87133] px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary/90">{footer.cta_button}</a>
       </div>
     </div>
     
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 border-t border-white/10 pt-12">
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 border-t border-white/10 pt-12">
       <div>
         <h5 class="font-raleway font-semibold text-lg mb-4">Safaris</h5>
         <ul class="space-y-2 text-stone-400">

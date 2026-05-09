@@ -37,17 +37,21 @@
     </div>
   </nav>
   
-  <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-darker/95 backdrop-blur-lg">
-    <div class="flex flex-col items-center justify-center h-full gap-8 text-white">
-      <a href="/" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Home</a>
-      <a href="#about" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">About</a>
-      <a href="#destinations" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Destinations</a>
-      <a href="#tours" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Tours</a>
-      <a href="#lodges" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Lodges</a>
-      <a href="/blogs" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Blog</a>
-      <a href="#contact" class="text-2xl font-raleway font-semibold hover:text-primary transition-colors">Contact</a>
-      <a href="#contact" class="mt-4 rounded-full bg-[#A87133] px-8 py-3 text-lg font-raleway font-semibold text-white transition-colors hover:bg-primary/90">
+  <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-darker/95 backdrop-blur-lg opacity-0 transition-opacity duration-300">
+    <div class="flex flex-col items-center justify-center h-full gap-6 text-white px-6 overflow-y-auto">
+      <a href="/" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Home</a>
+      <a href="/safaris" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Safaris</a>
+      <a href="/kilimanjaro" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Kilimanjaro</a>
+      <a href="/tours" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Tours</a>
+      <a href="/about" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">About</a>
+      <a href="/blogs" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Blog</a>
+      <a href="/contact" class="text-xl font-raleway font-semibold hover:text-primary transition-colors">Contact</a>
+      <hr class="w-16 border-white/20 my-2" />
+      <a href="/contact" class="rounded-full bg-[#A87133] px-8 py-3 text-base font-raleway font-semibold text-white transition-colors hover:bg-primary/90">
         Plan My Trip
+      </a>
+      <a href="/tours" class="rounded-full border border-white/30 px-8 py-3 text-base font-raleway font-semibold text-white transition-colors hover:bg-white/10">
+        View Tours
       </a>
     </div>
   </div>
@@ -62,7 +66,15 @@
   
   function toggleMenu() {
     menuOpen = !menuOpen;
-    mobileMenu?.classList.toggle('hidden');
+    if (menuOpen) {
+      mobileMenu?.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        mobileMenu?.classList.remove('opacity-0');
+      });
+    } else {
+      mobileMenu?.classList.add('opacity-0');
+      setTimeout(() => mobileMenu?.classList.add('hidden'), 300);
+    }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
   

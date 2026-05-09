@@ -16,7 +16,7 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
   const stars = [];
   for (let i = 0; i < 5; i++) {
     stars.push(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${i < rating ? '#00AA6C' : 'none'}" stroke="#00AA6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${i < rating ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
     );
   }
   return stars.join('');
@@ -26,15 +26,15 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
 <section class="bg-white py-20 lg:py-28">
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center mb-16">
-      <span class="inline-block text-sm font-semibold tracking-widest uppercase text-[#00AA6C] mb-3">Testimonials</span>
+      <span class="inline-block text-sm font-semibold tracking-widest uppercase text-primary mb-3">Testimonials</span>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-stone-800 mb-4">What Our Guests Say</h2>
       <p class="text-stone-500 max-w-2xl mx-auto text-base md:text-lg">Real stories from travelers who experienced the magic of Africa with us</p>
     </div>
     
     {featured && (
       <div class="mb-12 lg:mb-16">
-        <div class="relative bg-gradient-to-br from-[#00AA6C]/5 to-[#00AA6C]/10 rounded-3xl p-8 md:p-12 border border-[#00AA6C]/10">
-          <div class="absolute top-6 right-8 md:top-8 md:right-12 text-[#00AA6C]/10">
+        <div class="relative bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 md:p-12 border border-primary/10">
+          <div class="absolute top-6 right-8 md:top-8 md:right-12 text-primary/10">
             <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
           </div>
           <div class="relative flex flex-col md:flex-row gap-8 items-start">
@@ -59,8 +59,8 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
       <>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {gridTestimonials.map((t) => (
-            <div class="group relative bg-white rounded-2xl p-7 shadow-sm border border-stone-100 hover:shadow-xl hover:border-[#00AA6C]/20 transition-all duration-300 hover:-translate-y-1">
-              <div class="absolute top-6 right-6 text-[#00AA6C]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="group relative bg-white rounded-2xl p-7 shadow-sm border border-stone-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+              <div class="absolute top-6 right-6 text-primary/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
               </div>
               <div class="flex items-center gap-3 mb-4">
@@ -74,8 +74,8 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
               <h3 class="font-raleway font-semibold text-stone-800 mb-2 text-sm">{t.data.title}</h3>
               <p class="text-stone-500 text-sm leading-relaxed line-clamp-4">{t.data.text}</p>
               <div class="mt-4 pt-4 border-t border-stone-100 flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#00AA6C]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span class="text-xs font-medium text-[#00AA6C]">{t.data.travel_type}</span>
+                <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span class="text-xs font-medium text-primary">{t.data.travel_type}</span>
               </div>
             </div>
           ))}
@@ -89,7 +89,7 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
         <span class="text-stone-400 text-sm font-medium">Verified Reviews</span>
         <div class="h-px w-12 bg-stone-200"></div>
       </div>
-      <a href="https://www.tripadvisor.com/Attraction_Review-g6940195-d13368802-Reviews-Tazama_Africa_Tours_and_Safari-Arusha_National_Park_Arusha_Region.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#00AA6C] text-white font-raleway font-semibold rounded-full hover:bg-[#009960] transition-colors duration-200 shadow-lg shadow-[#00AA6C]/20 hover:shadow-xl hover:shadow-[#00AA6C]/30">
+      <a href="https://www.tripadvisor.com/Attraction_Review-g6940195-d13368802-Reviews-Tazama_Africa_Tours_and_Safari-Arusha_National_Park_Arusha_Region.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white font-raleway font-semibold rounded-full hover:bg-primary-dark transition-colors duration-200 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         Read More on TripAdvisor
       </a>

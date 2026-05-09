@@ -4,14 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#A87133',
+        primary: {
+          DEFAULT: '#00AA6C',
+          dark: '#009960',
+          light: '#E6F9F1',
+          50: '#E6F9F1',
+          100: '#C2F0DE',
+          200: '#99E1BD',
+          300: '#70D29C',
+          400: '#47C37B',
+          500: '#00AA6C',
+          600: '#009960',
+          700: '#007A4D',
+          800: '#005C3A',
+          900: '#003E27',
+        },
         dark: '#1a1a1a',
         darker: '#0d0d0d',
         lighter: '#f5f5f5',
         lightest: '#fafafa',
-        tripadvisor: '#35E0A1',
-        tripadvisorDark: '#2B9E73',
-        tripadvisorLight: '#E6F9F1',
       },
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],

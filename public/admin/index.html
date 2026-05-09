@@ -21,6 +21,182 @@
         public_folder: "/assets/blog",
         collections: [
           {
+            name: "site",
+            label: "Site Settings",
+            files: [
+              {
+                name: "settings",
+                label: "Global Settings",
+                file: "src/content/site/settings.md",
+                fields: [
+                  {
+                    label: "Hero Section",
+                    name: "hero",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Tagline", name: "tagline", widget: "string" },
+                      { label: "Video URL", name: "video_url", widget: "string" },
+                      { label: "WhatsApp Number", name: "whatsapp_number", widget: "string" },
+                      { label: "Scroll To", name: "scroll_to", widget: "string" },
+                    ],
+                  },
+                  {
+                    label: "About Section",
+                    name: "about",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Description", name: "description", widget: "text" },
+                      { label: "Image URL", name: "image", widget: "string" },
+                      {
+                        label: "Stats", name: "stats", widget: "list",
+                        fields: [
+                          { label: "Value", name: "value", widget: "string" },
+                          { label: "Label", name: "label", widget: "string" },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    label: "Contact Section",
+                    name: "contact",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Tagline", name: "tagline", widget: "text" },
+                      { label: "Image URL", name: "image", widget: "string" },
+                      { label: "Button Text", name: "button_text", widget: "string" },
+                      { label: "Button Link", name: "button_link", widget: "string" },
+                    ],
+                  },
+                  {
+                    label: "Footer",
+                    name: "footer",
+                    widget: "object",
+                    fields: [
+                      { label: "Newsletter Heading", name: "newsletter_heading", widget: "string" },
+                      { label: "Newsletter Text", name: "newsletter_text", widget: "text" },
+                      { label: "Newsletter Button", name: "newsletter_button", widget: "string" },
+                      { label: "CTA Heading", name: "cta_heading", widget: "string" },
+                      { label: "CTA Text", name: "cta_text", widget: "text" },
+                      { label: "CTA Button", name: "cta_button", widget: "string" },
+                      { label: "CTA Button Link", name: "cta_button_link", widget: "string" },
+                      { label: "Copyright", name: "copyright", widget: "string" },
+                      {
+                        label: "Social Links", name: "social", widget: "object",
+                        fields: [
+                          { label: "TripAdvisor URL", name: "tripadvisor_url", widget: "string" },
+                          { label: "Instagram URL", name: "instagram_url", widget: "string" },
+                          { label: "Facebook URL", name: "facebook_url", widget: "string" },
+                          { label: "YouTube URL", name: "youtube_url", widget: "string" },
+                          { label: "TikTok URL", name: "tiktok_url", widget: "string" },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    label: "Meta",
+                    name: "meta",
+                    widget: "object",
+                    fields: [
+                      { label: "Site Name", name: "site_name", widget: "string" },
+                      { label: "Site URL", name: "site_url", widget: "string" },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: "categories",
+            label: "Categories",
+            folder: "src/content/categories",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Subtitle", name: "subtitle", widget: "string" },
+              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Link", name: "link", widget: "string" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
+            name: "destinations",
+            label: "Destinations",
+            folder: "src/content/destinations",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Link", name: "link", widget: "string" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
+            name: "tours",
+            label: "Tours",
+            folder: "src/content/tours",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Duration", name: "duration", widget: "string" },
+              { label: "Price (numbers only)", name: "price", widget: "string" },
+              { label: "Badge", name: "badge", widget: "string", required: false },
+              { label: "Link", name: "link", widget: "string" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
+            name: "lodges",
+            label: "Lodges",
+            folder: "src/content/lodges",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" },
+              { label: "Tag (Luxury / Mid-Range)", name: "tag", widget: "string" },
+              { label: "Link", name: "link", widget: "string" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
+            name: "testimonials",
+            label: "Testimonials",
+            folder: "src/content/testimonials",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Name", name: "name", widget: "string" },
+              { label: "Avatar URL", name: "avatar", widget: "string" },
+              { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Date", name: "date", widget: "datetime" },
+              { label: "Travel Type", name: "travel_type", widget: "string" },
+              { label: "Text", name: "text", widget: "text" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
+            name: "partners",
+            label: "Partners",
+            folder: "src/content/partners",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Name", name: "name", widget: "string" },
+              { label: "Logo URL", name: "image", widget: "string" },
+              { label: "Link URL", name: "link", widget: "string" },
+              { label: "Order", name: "order", widget: "number", value_type: "int" },
+            ],
+          },
+          {
             name: "blog",
             label: "Blog Posts",
             folder: "src/content/blog",
@@ -33,11 +209,11 @@
               { label: "Thumbnail URL", name: "thumbnail", widget: "string", required: false },
               { label: "Author", name: "author", widget: "string" },
               { label: "Description", name: "description", widget: "text", required: false },
-              { label: "Body", name: "body", widget: "markdown" }
-            ]
-          }
-        ]
-      }
+              { label: "Body", name: "body", widget: "markdown" },
+            ],
+          },
+        ],
+      },
     });
   </script>
 </body>

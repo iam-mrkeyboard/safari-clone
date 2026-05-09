@@ -1,4 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
+const partners = (await getCollection('partners')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const marqueePartners = [...partners, ...partners];
 ---
 
 <section class="bg-lighter py-16 overflow-hidden">
@@ -9,24 +14,11 @@
   
   <div class="relative flex overflow-hidden">
     <div class="flex animate-marquee items-center gap-8">
-      <a href="/partners/kafika-house" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/kafika-house.png" alt="Kafika House Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
-      <a href="/partners/rustic-pathways" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/rustic-pathways.png" alt="Rustic Pathways Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
-      <a href="https://www.tatotz.org/" target="_blank" rel="noopener noreferrer" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/tato.png" alt="Tato Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
-      <a href="/partners/kafika-house" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/kafika-house.png" alt="Kafika House Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
-      <a href="/partners/rustic-pathways" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/rustic-pathways.png" alt="Rustic Pathways Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
-      <a href="https://www.tatotz.org/" target="_blank" rel="noopener noreferrer" class="flex-shrink-0">
-        <img src="https://www.tazamaafricasafari.com/assets/images/logos/partners/tato.png" alt="Tato Logo" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-      </a>
+      {marqueePartners.map((partner) => (
+        <a href={partner.data.link} target={partner.data.link.startsWith('http') ? '_blank' : undefined} rel={partner.data.link.startsWith('http') ? 'noopener noreferrer' : undefined} class="flex-shrink-0">
+          <img src={partner.data.image} alt={`${partner.data.name} Logo`} class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+        </a>
+      ))}
     </div>
   </div>
 </section>

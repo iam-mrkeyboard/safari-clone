@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+
+const tours = (await getCollection('tours')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const categories = [...new Set(tours.map(t => t.data.category))];
+
+function formatPrice(price: string) {
+  const num = parseFloat(price);
+  return '$' + num.toLocaleString('en-US', { minimumFractionDigits: num % 1 === 0 ? 0 : 2 });
+}
+---
+
+<Layout title="Tours - Tazama Africa Safaris">
+  <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900"></div>
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 50%, #A87133 0%, transparent 50%), radial-gradient(circle at 75% 50%, #A87133 0%, transparent 50%);"></div>
+    <div class="relative container mx-auto px-4 text-center">
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">Experiences</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Explore Our Tours</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">From the wild savannahs of the Serengeti to the peaks of Kilimanjaro, find your perfect adventure.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-lighter">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        <button class="filter-btn active px-5 py-2 rounded-full font-raleway font-semibold text-sm transition-all bg-primary text-white" data-filter="all">All Tours</button>
+        {categories.map(cat => (
+          <button class="filter-btn px-5 py-2 rounded-full font-raleway font-semibold text-sm transition-all bg-white text-stone-600 hover:bg-primary/10 hover:text-primary" data-filter={cat.toLowerCase()}>{cat}</button>
+        ))}
+      </div>
+
+      <div id="tours-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tours.map((tour) => (
+          <a href={tour.data.link} class="tour-card group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift" data-category={tour.data.category.toLowerCase()}>
+            <div class="relative overflow-hidden aspect-[16/12]">
+              <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                {tour.data.badge && (
+                  <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
+                )}
+                <span class="bg-white/90 text-stone-700 text-xs font-semibold px-3 py-1 rounded-full">{tour.data.category}</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-raleway font-semibold text-stone-800 mb-2 line-clamp-2">{tour.data.title}</h3>
+              <div class="flex items-center gap-2 text-sm text-stone-500 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>{tour.data.duration}</span>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                <div>
+                  <p class="text-xs text-stone-400">Starting from</p>
+                  <p class="text-xl font-raleway font-bold text-primary">{formatPrice(tour.data.price)}</p>
+                </div>
+                <span class="text-sm text-primary font-raleway font-semibold group-hover:underline">Explore →</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.tour-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => {
+        b.classList.remove('active', 'bg-primary', 'text-white');
+        b.classList.add('bg-white', 'text-stone-600');
+      });
+      btn.classList.add('active', 'bg-primary', 'text-white');
+      btn.classList.remove('bg-white', 'text-stone-600');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

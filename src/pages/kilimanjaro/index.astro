@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+
+const allTours = (await getCollection('tours')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const kilimanjaro = allTours.filter(t => t.data.category === 'Kilimanjaro' || t.data.category === 'Trekking');
+
+function formatPrice(price: string) {
+  const num = parseFloat(price);
+  return '$' + num.toLocaleString('en-US', { minimumFractionDigits: num % 1 === 0 ? 0 : 2 });
+}
+
+const routes = [
+  { name: "Lemosho", days: "7-8", difficulty: "Moderate", desc: "Scenic, less crowded, high summit success" },
+  { name: "Machame", days: "6-7", difficulty: "Moderate", desc: "Popular 'Whiskey Route', scenic variety" },
+  { name: "Marangu", days: "5-6", difficulty: "Moderate", desc: "Only route with hut accommodation, known as 'Coca-Cola Route'" },
+];
+---
+
+<Layout title="Mount Kilimanjaro - Tazama Africa Safaris">
+  <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://cdn.sanity.io/images/oot9i5yy/production/ebc962eb0d8d335b46f5cb958bf0b78501367233-1620x1080.webp" alt="" class="w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900"></div>
+    </div>
+    <div class="relative container mx-auto px-4 text-center">
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">Summit Dreams</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Climb Mount Kilimanjaro</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">Standing at 5,895m, the Roof of Africa awaits. Choose your route and begin the adventure of a lifetime.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div>
+          <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-6">Your Kilimanjaro Family</h2>
+          <div class="space-y-4 text-stone-600 leading-relaxed">
+            <p>There is a unique magic when you climb Kilimanjaro. It's not just the breathtaking landscapes or the challenge — it's the people who walk beside you. Our certified guides are passionate storytellers and safety guardians who know exactly when to encourage you and when to let you find your own rhythm.</p>
+            <p>The porters are the unsung heroes — carrying gear, setting camp, and preparing meals. At Tazama Africa, our porters are treated with respect, receiving fair wages and proper equipment.</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <img src="https://cdn.sanity.io/images/oot9i5yy/production/52d9c81e9e7d1e26fe9f3daf1d294fc4bb80c6cb-6000x4000.webp" alt="Kilimanjaro" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+
+      <div class="mb-20">
+        <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">Choose Your Route</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {routes.map(route => (
+            <div class="p-6 rounded-2xl bg-lighter card-lift">
+              <h3 class="text-xl font-raleway font-bold text-primary mb-2">{route.name}</h3>
+              <div class="flex items-center gap-4 text-sm text-stone-500 mb-3">
+                <span>{route.days} days</span>
+                <span class="w-1 h-1 bg-stone-300 rounded-full"></span>
+                <span>{route.difficulty}</span>
+              </div>
+              <p class="text-stone-600 text-sm">{route.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">Kilimanjaro Treks</h2>
+    </div>
+  </section>
+
+  <section class="py-16 bg-lighter">
+    <div class="container mx-auto px-4 max-w-7xl">
+      {kilimanjaro.length > 0 && (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {kilimanjaro.map((tour) => (
+            <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift">
+              <div class="relative overflow-hidden aspect-[16/12]">
+                <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 flex gap-2">
+                  {tour.data.badge && (
+                    <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
+                  )}
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="text-lg font-raleway font-semibold text-stone-800 mb-2 line-clamp-2">{tour.data.title}</h3>
+                <div class="flex items-center gap-2 text-sm text-stone-500 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>{tour.data.duration}</span>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                  <div>
+                    <p class="text-xs text-stone-400">Starting from</p>
+                    <p class="text-xl font-raleway font-bold text-primary">{formatPrice(tour.data.price)}</p>
+                  </div>
+                  <span class="text-sm text-primary font-raleway font-semibold group-hover:underline">Explore →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

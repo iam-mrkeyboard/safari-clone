@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tours = await getCollection('tours');
+  return tours.map((tour) => {
+    const slug = tour.data.link.replace('/tours/', '');
+    return {
+      params: { slug },
+      props: { tour },
+    };
+  });
+}
+
+const { tour } = Astro.props;
+
+function formatPrice(price: string) {
+  const num = parseFloat(price);
+  return '$' + num.toLocaleString('en-US', { minimumFractionDigits: num % 1 === 0 ? 0 : 2 });
+}
+---
+
+<Layout title={`${tour.data.title} - Tazama Africa Safaris`}>
+  <section class="relative h-[50vh] md:h-[60vh] overflow-hidden">
+    <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 pb-8">
+      <div class="container mx-auto px-4">
+        <a href="/tours" class="inline-flex items-center gap-2 text-white/80 hover:text-primary transition-colors mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          All Tours
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          {tour.data.badge && (
+            <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
+          )}
+          <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm">{tour.data.category}</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-white max-w-4xl">{tour.data.title}</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="p-6 rounded-2xl bg-lighter text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="2" class="mx-auto mb-3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <p class="text-sm text-stone-500">Duration</p>
+          <p class="text-xl font-raleway font-bold text-stone-800">{tour.data.duration}</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-lighter text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="2" class="mx-auto mb-3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <p class="text-sm text-stone-500">Category</p>
+          <p class="text-xl font-raleway font-bold text-stone-800">{tour.data.category}</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-lighter text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="2" class="mx-auto mb-3"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <p class="text-sm text-stone-500">Starting from</p>
+          <p class="text-xl font-raleway font-bold text-primary">{formatPrice(tour.data.price)}</p>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none mb-12">
+        <h2 class="text-2xl font-raleway font-bold text-stone-800">About This Tour</h2>
+        <p class="text-stone-600 leading-relaxed">
+          Experience Tanzania's breathtaking beauty with Tazama Africa Safaris. This {tour.data.duration.toLowerCase()} {tour.data.category.toLowerCase()} adventure takes you through some of the most extraordinary landscapes East Africa has to offer. With expert guides, comfortable accommodations, and seamless planning, every moment is crafted to leave you with memories that last a lifetime.
+        </p>
+        <p class="text-stone-600 leading-relaxed">
+          At Tazama Africa, we believe in travel that transforms. Our {tour.data.category.toLowerCase()} tours are designed to immerse you in the wild beauty of Tanzania while supporting local communities and conservation efforts. Whether you're a first-time visitor or a seasoned traveler, this journey will exceed every expectation.
+        </p>
+      </div>
+
+      <div class="bg-lighter rounded-2xl p-8 md:p-10 text-center">
+        <h2 class="text-2xl font-raleway font-bold text-stone-800 mb-4">Ready to Book This Tour?</h2>
+        <p class="text-stone-600 mb-6 max-w-xl mx-auto">Contact our team to customize this itinerary, check availability, or ask any questions.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contact" class="inline-block rounded-full bg-primary px-8 py-3 font-raleway font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg">Enquire Now</a>
+          <a href={`https://wa.me/255754922334?text=I'm interested in ${encodeURIComponent(tour.data.title)}`} target="_blank" rel="noopener noreferrer" class="inline-block rounded-full border-2 border-primary text-primary px-8 py-3 font-raleway font-semibold transition-all hover:bg-primary hover:text-white">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getEntry } from 'astro:content';
+
+const site = await getEntry('site', 'settings');
+const { about } = site.data;
+
+const values = [
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22L9 15M9 15L12 20L22 2L15 12L9 15Z"/><path d="M7 17L4 20"/></svg>',
+    title: "Sustainable Travel",
+    text: "We are committed to low-impact tourism. Our safaris are single-use plastic-free, and we partner exclusively with eco-certified lodges and camps that share our conservation ethos.",
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>',
+    title: "Locally Owned & Operated",
+    text: "From the moment you land, our Tanzanian team is with you every step. We know these lands because they are our home — every guide, driver, and chef shares a genuine passion for our country.",
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>',
+    title: "Tailor-Made Experiences",
+    text: "No two travelers are alike. We design each itinerary around your interests, travel style, and pace. Whether it's a private photographic safari or a family trek, you shape the journey.",
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A87133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+    title: "Positive Impact",
+    text: "Every trip with us helps fund 'See the Bush' — our outreach program bringing underprivileged Tanzanian youth to national parks, inspiring the next generation of conservationists.",
+  },
+];
+---
+
+<Layout title="About Us - Tazama Africa Safaris">
+  <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={about.image} alt="" class="w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/60 to-stone-900"></div>
+    </div>
+    <div class="relative container mx-auto px-4 text-center">
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">About Tazama</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Crafting Journeys That Matter</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">For over 15 years, we've been connecting travelers with the soul of East Africa — one unforgettable experience at a time.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-primary text-sm tracking-[0.2em] uppercase font-raleway font-semibold mb-3 block">Our Story</span>
+          <h2 class="text-3xl md:text-4xl font-raleway font-bold text-stone-800 mb-6">{about.heading}</h2>
+          <div class="space-y-4 text-stone-600 leading-relaxed">
+            <p>{about.description}</p>
+            <p>Tazama was born from a deep love for Tanzania's wild landscapes and the people who call them home. What started as a small guiding operation has grown into a boutique safari company known for authentic, high-touch experiences that go far beyond the typical game drive.</p>
+            <p>Our exceptional guides and dedicated team bring decades of combined experience, ensuring every aspect of your journey is flawlessly executed. We forge partnerships with suppliers who share our commitment to environmentally sustainable practices — prioritizing local, women-owned, and community-led businesses whenever possible.</p>
+            <p>Whether you're standing at the summit of Kilimanjaro or watching the sun spill across the Serengeti plains, we pledge an experience that is genuine, thrilling, and deeply respectful of the lands we explore.</p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden shadow-xl">
+            <img src={about.image} alt="Tazama Africa Safari" class="w-full h-auto object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-primary text-white rounded-2xl p-6 shadow-lg hidden lg:block">
+            <p class="text-3xl font-raleway font-bold">15+</p>
+            <p class="text-sm text-white/80">Years of Excellence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-lighter">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        {about.stats.map((stat, i) => (
+          <div class="text-center p-6 rounded-2xl bg-white shadow-sm card-lift">
+            <p class="text-3xl md:text-4xl font-raleway font-bold text-primary mb-1">{stat.value}</p>
+            <p class="text-sm text-stone-500">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-16">
+        <span class="text-primary text-sm tracking-[0.2em] uppercase font-raleway font-semibold mb-3 block">Our Approach</span>
+        <h2 class="text-3xl md:text-4xl font-raleway font-bold text-stone-800 mb-4">We Do Tanzania Differently</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">We believe travel can be a force for good — for our guests, our communities, and the wild places we protect.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {values.map((value) => (
+          <div class="p-8 rounded-2xl bg-lighter border border-stone-100 card-lift">
+            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5" set:html={value.icon}></div>
+            <h3 class="text-xl font-raleway font-bold text-stone-800 mb-3">{value.title}</h3>
+            <p class="text-stone-600 leading-relaxed">{value.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-20 bg-stone-900 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={about.image} alt="" class="w-full h-full object-cover opacity-20" />
+      <div class="absolute inset-0 bg-gradient-to-r from-stone-900/80 to-stone-900/60"></div>
+    </div>
+    <div class="relative container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-raleway font-bold text-white mb-4">Ready to Explore Africa With Us?</h2>
+      <p class="text-stone-300 max-w-2xl mx-auto mb-8">Let's create a journey that reflects your dreams, your pace, and your passion for discovery.</p>
+      <a href="/contact" class="inline-block rounded-full bg-primary px-8 py-3 font-raleway font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg mr-4">Plan Your Safari</a>
+      <a href="/tours" class="inline-block rounded-full border-2 border-white/30 text-white px-8 py-3 font-raleway font-semibold transition-all hover:bg-white/10 hover:border-white/50">View Our Tours</a>
+    </div>
+  </section>
+</Layout>

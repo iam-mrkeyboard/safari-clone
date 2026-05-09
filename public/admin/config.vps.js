@@ -2,28 +2,27 @@
  * VPS / Self-Hosted Decap CMS Configuration
  * ============================================
  * 
- * To switch FROM Netlify TO VPS or direct GitHub hosting:
- * 1. Delete the current backend config in index.html
- * 2. Copy the backend block below into the config
- * 3. Remove the Identity widget script from <head>
- * 4. Remove the `if (window.netlifyIdentity)` block
- * 5. Deploy to your VPS / GH Pages
+ * This config is for self-hosting on a VPS or GitHub Pages.
+ * It uses direct GitHub API access instead of Netlify Git Gateway.
+ * 
+ * To switch FROM Netlify TO VPS:
+ * 1. Copy the backend block below into public/admin/index.html
+ *    (replace the existing 'backend' object)
+ * 2. Remove the Identity widget script from <head>:
+ *    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+ * 3. Remove the `if (window.netlifyIdentity)` block
+ * 4. Deploy to your VPS / GH Pages
  *
- * Notes:
- * - No base_url needed — the Decap CMS client talks directly to the GitHub API
- * - You'll need a GitHub Personal Access Token (classic) with `repo` scope
- *   or set up a proxy server that handles OAuth
- * - local_backend is enabled so you can run `npx decap-server` for local dev
- *
- * Usage:
- *   // Replace the 'backend' key in window.CMS.init({ config: { backend: {...} }})
+ * Requirements for VPS:
+ * - GitHub Personal Access Token (classic) with `repo` scope
+ *   OR set up an OAuth proxy server
+ * - For local dev, uncomment `local_backend: true` and run: npx decap-server
  */
 
 const vpsBackendConfig = {
   name: "github",
   repo: "iam-mrkeyboard/safari-clone",
   branch: "main",
-  // base_url is intentionally omitted — direct GitHub API
+  // No base_url — talks directly to GitHub API
   // local_backend: true  // uncomment for local dev (run: npx decap-server)
-  // auth_scope: "repo"   // uncomment if using PAT-based auth
 };

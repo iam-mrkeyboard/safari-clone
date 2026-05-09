@@ -4,6 +4,7 @@ image: "https://cdn.sanity.io/images/oot9i5yy/production/de59644c4e623071cd0b036
 duration: "6 days"
 price: "2180"
 badge: ""
+category: "Beach"
 link: "/tours/zanzibar-bliss-6-nights-at-upendo-beach"
-order: 2
+order: 10
 ---

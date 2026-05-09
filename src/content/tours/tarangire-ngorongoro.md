@@ -4,6 +4,7 @@ image: "https://cdn.sanity.io/images/oot9i5yy/production/5330544f7ebacf5cc451a5a
 duration: "2 days"
 price: "630"
 badge: "Popular"
+category: "Safari"
 link: "/tours/2-day-tarangire-and-ngorongoro-safari"
 order: 1
 ---

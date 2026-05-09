@@ -15,8 +15,7 @@
     @apply font-raleway;
   }
 
-  img:not([loading="eager"]):not([src$=".svg"]),
-  video {
+  img:not([loading="eager"]):not([src$=".svg"]) {
     background: #e7e5e4;
     filter: blur(16px);
     opacity: 0.3;

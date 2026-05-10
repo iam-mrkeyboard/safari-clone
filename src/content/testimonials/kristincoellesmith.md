@@ -1,6 +1,6 @@
 ---
 name: "kristincoellesmith"
-avatar: "/assets/images/avatars/default-avatar-2.jpg"
+avatar: "/assets/uploads/default-avatar-2.jpg"
 rating: 5
 title: "Huge gratitude to Tazama Africa – My Dream Team!"
 date: "2025-10-01"

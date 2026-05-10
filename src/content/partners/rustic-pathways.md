@@ -1,6 +1,6 @@
 ---
 name: "Rustic Pathways"
-image: "/assets/logos/partners/rustic-pathways.png"
+image: "/assets/uploads/partner-rustic-pathways.png"
 link: "/partners/rustic-pathways"
 order: 2
 ---

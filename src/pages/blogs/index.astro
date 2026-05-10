@@ -20,7 +20,7 @@ function formatDate(date: Date) {
   <section class="relative py-20 md:py-28 bg-stone-900">
     <div class="absolute inset-0 overflow-hidden">
       <img
-        src="/assets/images/blog/kilimanjaro-family.jpg"
+        src="/assets/uploads/blog/kilimanjaro-family.jpg"
         alt="Blog Hero"
         class="w-full h-full object-cover opacity-30"
         loading="lazy" decoding="async"
@@ -44,7 +44,7 @@ function formatDate(date: Date) {
             <a href={`/blogs/${post.slug}`} class="block">
               <div class="relative aspect-[16/10] overflow-hidden">
                 <img
-                  src={post.data.thumbnail || '/assets/images/gallery/tanzania.jpg'}
+                  src={post.data.thumbnail || '/assets/uploads/gallery-tanzania.jpg'}
                   alt={post.data.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy" decoding="async"

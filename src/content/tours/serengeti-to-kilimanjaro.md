@@ -1,6 +1,6 @@
 ---
 title: "A 14-Day Journey: The Serengeti to Mount Kilimanjaro"
-image: "/assets/images/tours/serengeti-to-kilimanjaro.jpg"
+image: "/assets/uploads/serengeti-to-kilimanjaro.jpg"
 duration: "14 days"
 price: "3592.90"
 badge: "Adventure"

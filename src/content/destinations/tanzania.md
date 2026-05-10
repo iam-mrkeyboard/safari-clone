@@ -1,6 +1,6 @@
 ---
 title: "Tanzania"
-image: "/assets/images/destinations/tanzania.jpg"
+image: "/assets/uploads/destination-tanzania.jpg"
 link: "/safaris"
 order: 1
 ---

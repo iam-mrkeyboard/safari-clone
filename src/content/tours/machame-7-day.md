@@ -1,6 +1,6 @@
 ---
 title: "Machame 7-Day Trek"
-image: "/assets/images/tours/machame-7-day.jpg"
+image: "/assets/uploads/machame-7-day.jpg"
 duration: "7 days"
 price: "2423"
 badge: "Kilimanjaro"

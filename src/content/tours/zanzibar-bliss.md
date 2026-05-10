@@ -1,6 +1,6 @@
 ---
 title: "Zanzibar Bliss: 6 Nights at Upendo Beach"
-image: "/assets/images/tours/zanzibar-bliss.jpg"
+image: "/assets/uploads/zanzibar-bliss.jpg"
 duration: "6 days"
 price: "2180"
 badge: ""

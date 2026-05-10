@@ -1,6 +1,6 @@
 ---
 title: "7-Day Lemosho Kilimanjaro Trek"
-image: "/assets/images/tours/lemosho-7-day.webp"
+image: "/assets/uploads/lemosho-7-day.webp"
 duration: "7 days"
 price: "2487"
 badge: "Kilimanjaro"

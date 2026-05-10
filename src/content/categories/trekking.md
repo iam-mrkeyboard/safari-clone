@@ -1,7 +1,7 @@
 ---
 title: "Trekking"
 subtitle: "Kilimanjaro • Meru • Gorilla Trekking"
-image: "/assets/images/categories/trekking.jpg"
+image: "/assets/uploads/trekking.jpg"
 link: "/trekking"
 order: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: "5 Day Serengeti and Ngorongoro Crater Safari (Mid-Range)"
-image: "/assets/images/tours/serengeti-ngorongoro-5-day.jpg"
+image: "/assets/uploads/serengeti-ngorongoro-5-day.jpg"
 duration: "5 days"
 price: "1550"
 badge: "Mid-Range"

@@ -1,6 +1,6 @@
 ---
 title: "Tanzania Luxury Safari & Zanzibar Escape"
-image: "/assets/images/tours/tanzania-luxury.jpg"
+image: "/assets/uploads/tanzania-luxury.jpg"
 duration: "14 days"
 price: "11780"
 badge: "Luxury"

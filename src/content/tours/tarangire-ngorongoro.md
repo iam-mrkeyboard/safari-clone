@@ -1,6 +1,6 @@
 ---
 title: "2-Day Tarangire & Ngorongoro Safari"
-image: "/assets/images/tours/tarangire-ngorongoro.jpg"
+image: "/assets/uploads/tarangire-ngorongoro.jpg"
 duration: "2 days"
 price: "630"
 badge: "Popular"

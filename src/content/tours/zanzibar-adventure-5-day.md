@@ -1,6 +1,6 @@
 ---
 title: "Zanzibar Adventure Tour: 5 Days of Discovery & Delight"
-image: "/assets/images/tours/zanzibar-adventure-5-day.jpg"
+image: "/assets/uploads/zanzibar-adventure-5-day.jpg"
 duration: "5 days"
 price: "1151.80"
 badge: ""

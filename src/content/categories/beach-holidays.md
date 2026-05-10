@@ -1,7 +1,7 @@
 ---
 title: "Beach Holidays"
 subtitle: "Zanzibar • Spice Island • Stone Town"
-image: "/assets/images/categories/beach-holidays.jpg"
+image: "/assets/uploads/beach-holidays.jpg"
 link: "/zanzibar"
 order: 3
 ---

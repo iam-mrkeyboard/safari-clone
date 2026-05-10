@@ -1,6 +1,6 @@
 ---
 title: "4-Day Mount Meru Climb"
-image: "/assets/images/tours/mount-meru-4-day.jpg"
+image: "/assets/uploads/mount-meru-4-day.jpg"
 duration: "4 days"
 price: "1300"
 badge: "Trekking"

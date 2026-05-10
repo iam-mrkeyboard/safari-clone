@@ -1,6 +1,6 @@
 ---
 title: "Rwanda"
-image: "/assets/images/destinations/rwanda.jpg"
+image: "/assets/uploads/destination-rwanda.jpg"
 link: "/east-africa/rwanda"
 order: 3
 ---

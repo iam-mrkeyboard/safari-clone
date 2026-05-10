@@ -1,6 +1,6 @@
 ---
 name: "Essenia B"
-avatar: "/assets/images/avatars/default-avatar-3.jpg"
+avatar: "/assets/uploads/default-avatar-3.jpg"
 rating: 5
 title: "A once-in-a-lifetime experience!"
 date: "2025-10-01"

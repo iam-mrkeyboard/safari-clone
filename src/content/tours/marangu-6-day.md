@@ -1,6 +1,6 @@
 ---
 title: "6-Day Marangu Trek (8-Day Tour)"
-image: "/assets/images/tours/marangu-6-day.webp"
+image: "/assets/uploads/marangu-6-day.webp"
 duration: "6 days"
 price: "2110"
 badge: "Kilimanjaro"

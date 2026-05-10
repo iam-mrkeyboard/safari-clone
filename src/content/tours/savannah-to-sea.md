@@ -1,6 +1,6 @@
 ---
 title: "Safari & Serenity: From the Savannah to the Sea"
-image: "/assets/images/tours/savannah-to-sea.jpg"
+image: "/assets/uploads/savannah-to-sea.jpg"
 duration: "11 days"
 price: "5280.17"
 badge: "Luxury"

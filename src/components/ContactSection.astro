@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
-const site = await getEntry('site', 'settings');
-const { contact } = site.data;
+const homepageEntry = await getEntry('homepage', 'homepage');
+const { contact } = homepageEntry.data;
 ---
 
 <section id="contact" class="relative py-20 lg:py-28">

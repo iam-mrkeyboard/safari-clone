@@ -39,47 +39,7 @@
                 label: "Global Settings",
                 file: "src/content/site/settings.md",
                 fields: [
-                  {
-                    label: "Hero Section",
-                    name: "hero",
-                    widget: "object",
-                    fields: [
-                      { label: "Heading", name: "heading", widget: "string" },
-                      { label: "Tagline", name: "tagline", widget: "string" },
-                      { label: "Video URL", name: "video_url", widget: "string" },
-                      { label: "WhatsApp Number", name: "whatsapp_number", widget: "string" },
-                      { label: "Scroll To", name: "scroll_to", widget: "string" },
-                    ],
-                  },
-                  {
-                    label: "About Section",
-                    name: "about",
-                    widget: "object",
-                    fields: [
-                      { label: "Heading", name: "heading", widget: "string" },
-                      { label: "Description", name: "description", widget: "text" },
-                      { label: "Image URL", name: "image", widget: "image" },
-                      {
-                        label: "Stats", name: "stats", widget: "list",
-                        fields: [
-                          { label: "Value", name: "value", widget: "string" },
-                          { label: "Label", name: "label", widget: "string" },
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    label: "Contact Section",
-                    name: "contact",
-                    widget: "object",
-                    fields: [
-                      { label: "Heading", name: "heading", widget: "string" },
-                      { label: "Tagline", name: "tagline", widget: "text" },
-                      { label: "Image URL", name: "image", widget: "image" },
-                      { label: "Button Text", name: "button_text", widget: "string" },
-                      { label: "Button Link", name: "button_link", widget: "string" },
-                    ],
-                  },
+                  { label: "WhatsApp Number", name: "whatsapp_number", widget: "string" },
                   {
                     label: "Footer",
                     name: "footer",
@@ -128,6 +88,71 @@
                 label: "Homepage Sections",
                 file: "src/content/homepage/homepage.md",
                 fields: [
+                  {
+                    label: "Sections Order & Visibility",
+                    name: "sections",
+                    widget: "list",
+                    fields: [
+                      {
+                        label: "Section",
+                        name: "name",
+                        widget: "select",
+                        options: [
+                          { label: "Hero", value: "hero" },
+                          { label: "Categories", value: "categories" },
+                          { label: "About", value: "about" },
+                          { label: "Destinations", value: "destinations" },
+                          { label: "Tours", value: "tours" },
+                          { label: "Partners", value: "partners" },
+                          { label: "Lodges", value: "lodges" },
+                          { label: "Testimonials", value: "testimonials" },
+                          { label: "Contact", value: "contact" },
+                        ],
+                      },
+                      { label: "Visible", name: "visible", widget: "boolean", default: true },
+                    ],
+                  },
+                  {
+                    label: "Hero Section",
+                    name: "hero",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Tagline", name: "tagline", widget: "string" },
+                      { label: "Video URL", name: "video_url", widget: "string" },
+                      { label: "Poster Image", name: "poster_image", widget: "image" },
+                      { label: "Scroll To", name: "scroll_to", widget: "string" },
+                    ],
+                  },
+                  {
+                    label: "About Section",
+                    name: "about",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Description", name: "description", widget: "text" },
+                      { label: "Image URL", name: "image", widget: "image" },
+                      {
+                        label: "Stats", name: "stats", widget: "list",
+                        fields: [
+                          { label: "Value", name: "value", widget: "string" },
+                          { label: "Label", name: "label", widget: "string" },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    label: "Contact Section",
+                    name: "contact",
+                    widget: "object",
+                    fields: [
+                      { label: "Heading", name: "heading", widget: "string" },
+                      { label: "Tagline", name: "tagline", widget: "text" },
+                      { label: "Image URL", name: "image", widget: "image" },
+                      { label: "Button Text", name: "button_text", widget: "string" },
+                      { label: "Button Link", name: "button_link", widget: "string" },
+                    ],
+                  },
                   { label: "Categories Heading", name: "categories_heading", widget: "string" },
                   { label: "Categories Text", name: "categories_text", widget: "text" },
                   { label: "Destinations Heading", name: "destinations_heading", widget: "string" },
@@ -219,6 +244,7 @@
               { label: "Date", name: "date", widget: "datetime" },
               { label: "Travel Type", name: "travel_type", widget: "string" },
               { label: "Text", name: "text", widget: "text" },
+              { label: "Video URL (upload via Media or paste YouTube link)", name: "video_url", widget: "string", required: false },
               { label: "Order", name: "order", widget: "number", value_type: "int" },
             ],
           },

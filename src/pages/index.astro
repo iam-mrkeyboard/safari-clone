@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import { getEntry } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import CategoriesSection from '../components/CategoriesSection.astro';
 import AboutSection from '../components/AboutSection.astro';
@@ -10,16 +11,26 @@ import PartnersSection from '../components/PartnersSection.astro';
 import LodgesSection from '../components/LodgesSection.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+
+const homepageEntry = await getEntry('homepage', 'homepage');
+const visibleSections = homepageEntry.data.sections.filter(s => s.visible).map(s => s.name);
+
+const sectionComponents: Record<string, any> = {
+  hero: Hero,
+  categories: CategoriesSection,
+  about: AboutSection,
+  destinations: DestinationsSection,
+  tours: ToursSection,
+  partners: PartnersSection,
+  lodges: LodgesSection,
+  testimonials: TestimonialsSection,
+  contact: ContactSection,
+};
 ---
 
 <Layout title="Tazama Africa Safaris - East Africa Safaris">
-  <Hero />
-  <CategoriesSection />
-  <AboutSection />
-  <DestinationsSection />
-  <ToursSection />
-  <PartnersSection />
-  <LodgesSection />
-  <TestimonialsSection />
-  <ContactSection />
+  {visibleSections.map((name) => {
+    const Component = sectionComponents[name];
+    return <Component />;
+  })}
 </Layout>

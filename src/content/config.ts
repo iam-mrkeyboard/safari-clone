@@ -15,29 +15,7 @@ const blog = defineCollection({
 const site = defineCollection({
   type: 'content',
   schema: z.object({
-    hero: z.object({
-      heading: z.string(),
-      tagline: z.string(),
-      video_url: z.string(),
-      whatsapp_number: z.string(),
-      scroll_to: z.string(),
-    }),
-    about: z.object({
-      heading: z.string(),
-      description: z.string(),
-      image: z.string(),
-      stats: z.array(z.object({
-        value: z.string(),
-        label: z.string(),
-      })),
-    }),
-    contact: z.object({
-      heading: z.string(),
-      tagline: z.string(),
-      image: z.string(),
-      button_text: z.string(),
-      button_link: z.string(),
-    }),
+    whatsapp_number: z.string(),
     footer: z.object({
       newsletter_heading: z.string(),
       newsletter_text: z.string(),
@@ -65,6 +43,33 @@ const site = defineCollection({
 const homepage = defineCollection({
   type: 'content',
   schema: z.object({
+    sections: z.array(z.object({
+      name: z.string(),
+      visible: z.boolean(),
+    })),
+    hero: z.object({
+      heading: z.string(),
+      tagline: z.string(),
+      video_url: z.string(),
+      poster_image: z.string(),
+      scroll_to: z.string(),
+    }),
+    about: z.object({
+      heading: z.string(),
+      description: z.string(),
+      image: z.string(),
+      stats: z.array(z.object({
+        value: z.string(),
+        label: z.string(),
+      })),
+    }),
+    contact: z.object({
+      heading: z.string(),
+      tagline: z.string(),
+      image: z.string(),
+      button_text: z.string(),
+      button_link: z.string(),
+    }),
     categories_heading: z.string(),
     categories_text: z.string(),
     destinations_heading: z.string(),
@@ -138,6 +143,7 @@ const testimonials = defineCollection({
     date: z.string(),
     travel_type: z.string(),
     text: z.string(),
+    video_url: z.string().optional(),
     order: z.number(),
   }),
 });

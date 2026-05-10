@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
 import { getEntry } from 'astro:content';
 
-const site = await getEntry('site', 'settings');
-const { contact } = site.data;
+const homepageEntry = await getEntry('homepage', 'homepage');
+const { contact } = homepageEntry.data;
 ---
 
 <Layout title="Contact Us - Tazama Africa Safaris">

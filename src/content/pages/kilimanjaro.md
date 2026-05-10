@@ -1,0 +1,26 @@
+---
+hero_image: "/assets/uploads/kilimanjaro-hero.webp"
+hero_tagline: "Summit Dreams"
+hero_title: "Climb Mount Kilimanjaro"
+hero_description: "Standing at 5,895m, the Roof of Africa awaits. Choose your route and begin the adventure of a lifetime."
+intro_heading: "Your Kilimanjaro Family"
+intro_text:
+  - "There is a unique magic when you climb Kilimanjaro. It's not just the breathtaking landscapes or the challenge — it's the people who walk beside you. Our certified guides are passionate storytellers and safety guardians who know exactly when to encourage you and when to let you find your own rhythm."
+  - "The porters are the unsung heroes — carrying gear, setting camp, and preparing meals. At Tazama Africa, our porters are treated with respect, receiving fair wages and proper equipment."
+intro_image: "/assets/uploads/kilimanjaro-hero.webp"
+routes_heading: "Choose Your Route"
+routes:
+  - name: "Lemosho"
+    days: "7-8"
+    difficulty: "Moderate"
+    description: "Scenic, less crowded, high summit success"
+  - name: "Machame"
+    days: "6-7"
+    difficulty: "Moderate"
+    description: "Popular 'Whiskey Route', scenic variety"
+  - name: "Marangu"
+    days: "5-6"
+    difficulty: "Moderate"
+    description: "Only route with hut accommodation, known as 'Coca-Cola Route'"
+treks_heading: "Kilimanjaro Treks"
+---

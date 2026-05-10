@@ -93,13 +93,6 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
   
-  .btn-outline-gold {
-    @apply border-2 border-white text-white px-6 py-2 rounded-full font-raleway font-semibold transition-all duration-300;
-  }
-  
-  .btn-outline-gold:hover {
-    @apply bg-primary border-primary;
-  }
   
   .btn-outline-primary {
     @apply border-2 border-primary text-primary px-6 py-2 rounded-full font-raleway font-semibold transition-all duration-300;

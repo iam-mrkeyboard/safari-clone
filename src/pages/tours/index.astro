@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'tours');
+const { hero_tagline, hero_title, hero_description } = page.data;
 
 const tours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
@@ -20,9 +23,9 @@ function formatPrice(price: string) {
     <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900"></div>
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 50%, rgb(var(--color-primary) / 1) 0%, transparent 50%), radial-gradient(circle at 75% 50%, rgb(var(--color-primary) / 1) 0%, transparent 50%);"></div>
     <div class="relative container mx-auto px-4 text-center">
-      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">Experiences</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Explore Our Tours</h1>
-      <p class="text-lg text-stone-300 max-w-2xl mx-auto">From the wild savannahs of the Serengeti to the peaks of Kilimanjaro, find your perfect adventure.</p>
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">{hero_tagline}</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">{hero_title}</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">{hero_description}</p>
     </div>
   </section>
 

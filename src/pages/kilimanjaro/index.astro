@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'kilimanjaro');
+const { hero_image, hero_tagline, hero_title, hero_description, intro_heading, intro_text, intro_image, routes_heading, routes, treks_heading } = page.data;
 
 const allTours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
@@ -12,66 +15,65 @@ function formatPrice(price: string) {
   const num = parseFloat(price);
   return '$' + num.toLocaleString('en-US', { minimumFractionDigits: num % 1 === 0 ? 0 : 2 });
 }
-
-const routes = [
-  { name: "Lemosho", days: "7-8", difficulty: "Moderate", desc: "Scenic, less crowded, high summit success" },
-  { name: "Machame", days: "6-7", difficulty: "Moderate", desc: "Popular 'Whiskey Route', scenic variety" },
-  { name: "Marangu", days: "5-6", difficulty: "Moderate", desc: "Only route with hut accommodation, known as 'Coca-Cola Route'" },
-];
 ---
 
 <Layout title="Mount Kilimanjaro - Tazama Africa Safaris">
   <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/assets/uploads/kilimanjaro-hero.webp" alt="" class="w-full h-full object-cover opacity-40" loading="lazy" decoding="async" />
+      <img src={hero_image} alt="" class="w-full h-full object-cover opacity-40" loading="lazy" decoding="async" />
       <div class="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900"></div>
     </div>
     <div class="relative container mx-auto px-4 text-center">
-      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">Summit Dreams</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Climb Mount Kilimanjaro</h1>
-      <p class="text-lg text-stone-300 max-w-2xl mx-auto">Standing at 5,895m, the Roof of Africa awaits. Choose your route and begin the adventure of a lifetime.</p>
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">{hero_tagline}</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">{hero_title}</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">{hero_description}</p>
     </div>
   </section>
 
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4 max-w-5xl">
-      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
-        <div>
-          <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-6">Your Kilimanjaro Family</h2>
-          <div class="space-y-4 text-stone-600 leading-relaxed">
-            <p>There is a unique magic when you climb Kilimanjaro. It's not just the breathtaking landscapes or the challenge — it's the people who walk beside you. Our certified guides are passionate storytellers and safety guardians who know exactly when to encourage you and when to let you find your own rhythm.</p>
-            <p>The porters are the unsung heroes — carrying gear, setting camp, and preparing meals. At Tazama Africa, our porters are treated with respect, receiving fair wages and proper equipment.</p>
+  {intro_heading && (
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <div>
+            <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-6">{intro_heading}</h2>
+            <div class="space-y-4 text-stone-600 leading-relaxed">
+              {intro_text?.map((p) => <p>{p}</p>)}
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <img src={intro_image || hero_image} alt="Kilimanjaro" class="w-full h-auto object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden shadow-lg">
-          <img src="/assets/uploads/kilimanjaro-hero.webp" alt="Kilimanjaro" class="w-full h-auto object-cover" loading="lazy" decoding="async" />
-        </div>
-      </div>
 
-      <div class="mb-20">
-        <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">Choose Your Route</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          {routes.map(route => (
-            <div class="p-6 rounded-2xl bg-lighter card-lift">
-              <h3 class="text-xl font-raleway font-bold text-primary mb-2">{route.name}</h3>
-              <div class="flex items-center gap-4 text-sm text-stone-500 mb-3">
-                <span>{route.days} days</span>
-                <span class="w-1 h-1 bg-stone-300 rounded-full"></span>
-                <span>{route.difficulty}</span>
-              </div>
-              <p class="text-stone-600 text-sm">{route.desc}</p>
+        {routes && (
+          <div class="mb-20">
+            <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">{routes_heading}</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              {routes.map(route => (
+                <div class="p-6 rounded-2xl bg-lighter card-lift">
+                  <h3 class="text-xl font-raleway font-bold text-primary mb-2">{route.name}</h3>
+                  <div class="flex items-center gap-4 text-sm text-stone-500 mb-3">
+                    <span>{route.days} days</span>
+                    <span class="w-1 h-1 bg-stone-300 rounded-full"></span>
+                    <span>{route.difficulty}</span>
+                  </div>
+                  <p class="text-stone-600 text-sm">{route.description}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
+
+        {treks_heading && (
+          <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">{treks_heading}</h2>
+        )}
       </div>
+    </section>
+  )}
 
-      <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-8 text-center">Kilimanjaro Treks</h2>
-    </div>
-  </section>
-
-  <section class="py-16 bg-lighter">
-    <div class="container mx-auto px-4 max-w-7xl">
-      {kilimanjaro.length > 0 && (
+  {kilimanjaro.length > 0 && (
+    <section class="py-16 bg-lighter">
+      <div class="container mx-auto px-4 max-w-7xl">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {kilimanjaro.map((tour) => (
             <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift">
@@ -101,7 +103,7 @@ const routes = [
             </a>
           ))}
         </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 </Layout>

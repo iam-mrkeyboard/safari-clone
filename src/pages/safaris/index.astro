@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'safaris');
+const { hero_image, hero_tagline, hero_title, hero_description, intro_heading, intro_description, features_heading, features } = page.data;
 
 const allTours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
@@ -12,88 +15,84 @@ function formatPrice(price: string) {
   const num = parseFloat(price);
   return '$' + num.toLocaleString('en-US', { minimumFractionDigits: num % 1 === 0 ? 0 : 2 });
 }
+
+const featureIcons = [
+  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>',
+];
 ---
 
 <Layout title="Safaris - Tazama Africa Safaris">
   <section class="relative py-32 md:py-40 bg-stone-900 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/assets/uploads/safari-hero.jpg" alt="" class="w-full h-full object-cover opacity-40" loading="lazy" decoding="async" />
+      <img src={hero_image} alt="" class="w-full h-full object-cover opacity-40" loading="lazy" decoding="async" />
       <div class="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/50 to-stone-900"></div>
     </div>
     <div class="relative container mx-auto px-4 text-center">
-      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">Wild Encounters</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">Tanzania Safaris</h1>
-      <p class="text-lg text-stone-300 max-w-2xl mx-auto">Few places rival Tanzania as a wildlife destination. From the Serengeti's golden plains to the Ngorongoro Crater — every moment is extraordinary.</p>
+      <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4 font-raleway font-semibold">{hero_tagline}</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">{hero_title}</h1>
+      <p class="text-lg text-stone-300 max-w-2xl mx-auto">{hero_description}</p>
     </div>
   </section>
 
   <section class="py-16 bg-lighter">
     <div class="container mx-auto px-4 max-w-7xl">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-4">Unique Tailored Safaris</h2>
-        <p class="text-stone-600 leading-relaxed">Tanzania is a land where nature still reigns wild and free. Endless savannas, ancient craters, and herds moving with the rhythm of the seasons. At Tazama Africa, we curate safari experiences that go beyond the ordinary — connecting you with nature in its purest form. Our expert guides lead you on immersive game drives to encounter the Big Five and beyond.</p>
-      </div>
+      {intro_heading && (
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-3xl font-raleway font-bold text-stone-800 mb-4">{intro_heading}</h2>
+          <p class="text-stone-600 leading-relaxed">{intro_description}</p>
+        </div>
+      )}
 
       {safaris.length > 0 && (
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {safaris.map((tour) => (
-            <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift">
-              <div class="relative overflow-hidden aspect-[16/12]">
-                <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                <div class="absolute top-4 left-4 flex gap-2">
-                  {tour.data.badge && (
-                    <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
-                  )}
-                </div>
-              </div>
-              <div class="p-5">
-                <h3 class="text-lg font-raleway font-semibold text-stone-800 mb-2 line-clamp-2">{tour.data.title}</h3>
-                <div class="flex items-center gap-2 text-sm text-stone-500 mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  <span>{tour.data.duration}</span>
-                </div>
-                <div class="flex items-center justify-between pt-3 border-t border-stone-100">
-                  <div>
-                    <p class="text-xs text-stone-400">Starting from</p>
-                    <p class="text-xl font-raleway font-bold text-primary">{formatPrice(tour.data.price)}</p>
+            {safaris.map((tour) => (
+              <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-white shadow-sm card-lift">
+                <div class="relative overflow-hidden aspect-[16/12]">
+                  <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                  <div class="absolute top-4 left-4 flex gap-2">
+                    {tour.data.badge && (
+                      <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
+                    )}
                   </div>
-                  <span class="text-sm text-primary font-raleway font-semibold group-hover:underline">Explore →</span>
                 </div>
-              </div>
-            </a>
-          ))}
+                <div class="p-5">
+                  <h3 class="text-lg font-raleway font-semibold text-stone-800 mb-2 line-clamp-2">{tour.data.title}</h3>
+                  <div class="flex items-center gap-2 text-sm text-stone-500 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>{tour.data.duration}</span>
+                  </div>
+                  <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                    <div>
+                      <p class="text-xs text-stone-400">Starting from</p>
+                      <p class="text-xl font-raleway font-bold text-primary">{formatPrice(tour.data.price)}</p>
+                    </div>
+                    <span class="text-sm text-primary font-raleway font-semibold group-hover:underline">Explore →</span>
+                  </div>
+                </div>
+              </a>
+            ))}
         </div>
       )}
     </div>
   </section>
 
-  <section class="py-20 bg-stone-900 text-white">
-    <div class="container mx-auto px-4 max-w-5xl text-center">
-      <h2 class="text-3xl md:text-4xl font-raleway font-bold mb-4">What Makes a Tazama Safari Special</h2>
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        <div class="p-6">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </div>
-          <h3 class="text-xl font-raleway font-semibold mb-2">Expert Guides</h3>
-          <p class="text-stone-400 text-sm">Our guides know every track, sound, and scent of the bush, bringing you closer to the wildlife.</p>
-        </div>
-        <div class="p-6">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </div>
-          <h3 class="text-xl font-raleway font-semibold mb-2">Responsible Travel</h3>
-          <p class="text-stone-400 text-sm">Every safari supports conservation and local communities. Travel with purpose.</p>
-        </div>
-        <div class="p-6">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          </div>
-          <h3 class="text-xl font-raleway font-semibold mb-2">Tailor-Made</h3>
-          <p class="text-stone-400 text-sm">Custom-crafted itineraries matched to your interests, budget, and travel style.</p>
+  {features_heading && (
+    <section class="py-20 bg-stone-900 text-white">
+      <div class="container mx-auto px-4 max-w-5xl text-center">
+        <h2 class="text-3xl md:text-4xl font-raleway font-bold mb-4">{features_heading}</h2>
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+          {features?.map((feature, i) => (
+            <div class="p-6">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center" set:html={featureIcons[i] || featureIcons[0]}></div>
+              <h3 class="text-xl font-raleway font-semibold mb-2">{feature.title}</h3>
+              <p class="text-stone-400 text-sm">{feature.description}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Layout>

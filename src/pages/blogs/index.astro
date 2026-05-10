@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'blogs');
+const { hero_image, hero_tagline, hero_title, hero_description } = page.data;
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -20,7 +23,7 @@ function formatDate(date: Date) {
   <section class="relative py-20 md:py-28 bg-stone-900">
     <div class="absolute inset-0 overflow-hidden">
       <img
-        src="/assets/uploads/blog/kilimanjaro-family.jpg"
+        src={hero_image}
         alt="Blog Hero"
         class="w-full h-full object-cover opacity-30"
         loading="lazy" decoding="async"
@@ -29,9 +32,9 @@ function formatDate(date: Date) {
     </div>
     <div class="relative container mx-auto px-4">
       <div class="max-w-3xl">
-        <span class="inline-block text-gold text-sm tracking-[0.2em] uppercase mb-4">Travel Stories</span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">Latest From Tazama</h1>
-        <p class="text-lg text-stone-300">Discover travel tips, safari stories, and adventure guides from the heart of Africa.</p>
+        <span class="inline-block text-primary text-sm tracking-[0.2em] uppercase mb-4">{hero_tagline}</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white mb-4">{hero_title}</h1>
+        <p class="text-lg text-stone-300">{hero_description}</p>
       </div>
     </div>
   </section>
@@ -50,7 +53,7 @@ function formatDate(date: Date) {
                   loading="lazy" decoding="async"
                 />
                 <div class="absolute top-4 left-4">
-                  <span class="px-3 py-1 bg-gold text-white text-xs font-medium uppercase tracking-wide rounded">
+                  <span class="px-3 py-1 bg-primary text-white text-xs font-medium uppercase tracking-wide rounded">
                     {post.data.category}
                   </span>
                 </div>
@@ -63,7 +66,7 @@ function formatDate(date: Date) {
                   <span class="w-1 h-1 bg-stone-300 rounded-full"></span>
                   <span>{post.data.author}</span>
                 </div>
-                <h2 class="text-xl font-serif text-stone-800 group-hover:text-gold transition-colors mb-3 line-clamp-2">
+                <h2 class="text-xl font-raleway font-bold text-stone-800 group-hover:text-primary transition-colors mb-3 line-clamp-2">
                   {post.data.title}
                 </h2>
                 {post.data.description && (

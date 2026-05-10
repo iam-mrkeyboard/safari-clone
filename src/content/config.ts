@@ -59,6 +59,21 @@ const site = defineCollection({
       site_name: z.string(),
       site_url: z.string(),
     }),
+    homepage: z.object({
+      categories_heading: z.string(),
+      categories_text: z.string(),
+      destinations_heading: z.string(),
+      destinations_text: z.string(),
+      destinations_subtitle: z.string(),
+      tours_heading: z.string(),
+      tours_text: z.string(),
+      partners_heading: z.string(),
+      partners_text: z.string(),
+      lodges_heading: z.string(),
+      lodges_text: z.string(),
+      testimonials_heading: z.string(),
+      testimonials_text: z.string(),
+    }),
   }),
 });
 

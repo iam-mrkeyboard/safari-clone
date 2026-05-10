@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+const site = await getEntry('site', 'settings');
+const { homepage } = site.data;
 const destinations = (await getCollection('destinations')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -8,9 +10,9 @@ const destinations = (await getCollection('destinations')).sort(
 <section id="destinations" class="bg-dark py-20 lg:py-28">
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center text-white mb-16">
-      <h2 class="text-3xl md:text-4xl font-raleway font-bold mb-6">Explore East Africa, The Tazama Way</h2>
-      <p class="text-stone-400 max-w-2xl mx-auto">Our expertise spans all four corners of East Africa. Whether you're tracking gorillas, chasing the Great Migration, or unwinding on pristine coastlines, Tazama crafts fully personalized itineraries shaped around you.</p>
-      <p class="text-stone-400 mt-4">Click on any destination below and begin your journey.</p>
+      <h2 class="text-3xl md:text-4xl font-raleway font-bold mb-6">{homepage.destinations_heading}</h2>
+      <p class="text-stone-400 max-w-2xl mx-auto">{homepage.destinations_text}</p>
+      <p class="text-stone-400 mt-4">{homepage.destinations_subtitle}</p>
     </div>
     
     <div class="grid grid-cols-2 gap-5 md:gap-8">

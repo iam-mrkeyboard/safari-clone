@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+const site = await getEntry('site', 'settings');
+const { homepage } = site.data;
 const tours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -13,8 +15,8 @@ function formatPrice(price: string) {
 <section id="tours" class="bg-white py-20 lg:py-28">
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-raleway font-bold text-stone-800 mb-4">Authentic & Timeless Adventures</h2>
-      <p class="text-stone-600 max-w-2xl mx-auto">Start exploring our sample itineraries and see where an adventure with Tazama Africa can take you.</p>
+      <h2 class="text-3xl md:text-4xl font-raleway font-bold text-stone-800 mb-4">{homepage.tours_heading}</h2>
+      <p class="text-stone-600 max-w-2xl mx-auto">{homepage.tours_text}</p>
     </div>
     
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

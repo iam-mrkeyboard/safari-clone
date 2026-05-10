@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+const site = await getEntry('site', 'settings');
+const { homepage } = site.data;
 const categories = (await getCollection('categories')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -8,8 +10,8 @@ const categories = (await getCollection('categories')).sort(
 <section id="categories" class="bg-white py-20 lg:py-28">
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-raleway font-bold text-primary mb-4">Fulfill your travel dreams with Tazama</h2>
-      <p class="text-stone-600 max-w-2xl mx-auto">With over 15 years of expertise in the safari industry, we've mastered the art of crafting seamless journeys that create unforgettable memories.</p>
+      <h2 class="text-3xl md:text-4xl font-raleway font-bold text-primary mb-4">{homepage.categories_heading}</h2>
+      <p class="text-stone-600 max-w-2xl mx-auto">{homepage.categories_text}</p>
     </div>
     
     <div class="grid gap-8 md:grid-cols-3">

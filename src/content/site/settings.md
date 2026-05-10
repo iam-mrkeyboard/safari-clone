@@ -46,4 +46,19 @@ footer:
 meta:
   site_name: "Tazama Africa Safaris"
   site_url: "https://www.tazamaafricasafari.com"
+
+homepage:
+  categories_heading: "Fulfill your travel dreams with Tazama"
+  categories_text: "With over 15 years of expertise in the safari industry, we've mastered the art of crafting seamless journeys that create unforgettable memories."
+  destinations_heading: "Explore East Africa, The Tazama Way"
+  destinations_text: "Our expertise spans all four corners of East Africa. Whether you're tracking gorillas, chasing the Great Migration, or unwinding on pristine coastlines, Tazama crafts fully personalized itineraries shaped around you."
+  destinations_subtitle: "Click on any destination below and begin your journey."
+  tours_heading: "Authentic & Timeless Adventures"
+  tours_text: "Start exploring our sample itineraries and see where an adventure with Tazama Africa can take you."
+  partners_heading: "Our Partners"
+  partners_text: "We pride ourselves on collaborating with top-tier partners to ensure our guests receive the best experiences Africa has to offer."
+  lodges_heading: "Not Sure Where to Stay?"
+  lodges_text: "Whether you're looking for a budget-friendly option or a luxurious retreat, we have a range of accommodations to suit your needs."
+  testimonials_heading: "What Our Guests Say"
+  testimonials_text: "Real stories from travelers who experienced the magic of Africa with us"
 ---

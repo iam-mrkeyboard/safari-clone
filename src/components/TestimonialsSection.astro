@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+const site = await getEntry('site', 'settings');
+const { homepage } = site.data;
 const testimonials = (await getCollection('testimonials')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -27,8 +29,8 @@ function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center mb-16">
       <span class="inline-block text-sm font-semibold tracking-widest uppercase text-primary mb-3">Testimonials</span>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-stone-800 mb-4">What Our Guests Say</h2>
-      <p class="text-stone-500 max-w-2xl mx-auto text-base md:text-lg">Real stories from travelers who experienced the magic of Africa with us</p>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-stone-800 mb-4">{homepage.testimonials_heading}</h2>
+      <p class="text-stone-500 max-w-2xl mx-auto text-base md:text-lg">{homepage.testimonials_text}</p>
     </div>
     
     {featured && (

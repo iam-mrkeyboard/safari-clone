@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 const homepageEntry = await getEntry('homepage', 'homepage');
-const homepage = homepageEntry.data;
+const section = homepageEntry.data.sections.find(s => s.section_type === 'testimonials')!;
 const testimonials = (await getCollection('testimonials')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -57,8 +57,8 @@ function VideoEmbed({ url, className = '' }: { url: string; className?: string }
   <div class="mx-auto max-w-6xl px-4 xl:px-8">
     <div class="text-center mb-16">
       <span class="inline-block text-sm font-semibold tracking-widest uppercase text-primary mb-3">Testimonials</span>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-stone-800 mb-4">{homepage.testimonials_heading}</h2>
-      <p class="text-stone-500 max-w-2xl mx-auto text-base md:text-lg">{homepage.testimonials_text}</p>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-stone-800 mb-4">{section.heading}</h2>
+      <p class="text-stone-500 max-w-2xl mx-auto text-base md:text-lg">{section.text}</p>
     </div>
     
     {featured && (

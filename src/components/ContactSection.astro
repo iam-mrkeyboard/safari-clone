@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 const homepageEntry = await getEntry('homepage', 'homepage');
-const { contact } = homepageEntry.data;
+const contact = homepageEntry.data.sections.find(s => s.section_type === 'contact')!;
 ---
 
 <section id="contact" class="relative py-20 lg:py-28">

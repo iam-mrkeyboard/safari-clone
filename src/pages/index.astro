@@ -13,7 +13,7 @@ import TestimonialsSection from '../components/TestimonialsSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 
 const homepageEntry = await getEntry('homepage', 'homepage');
-const visibleSections = homepageEntry.data.sections.filter(s => s.visible).map(s => s.name);
+const visibleSections = homepageEntry.data.sections.filter(s => s.visible);
 
 const sectionComponents: Record<string, any> = {
   hero: Hero,
@@ -29,8 +29,8 @@ const sectionComponents: Record<string, any> = {
 ---
 
 <Layout title="Tazama Africa Safaris - East Africa Safaris">
-  {visibleSections.map((name) => {
-    const Component = sectionComponents[name];
+  {visibleSections.map((section) => {
+    const Component = sectionComponents[section.section_type];
     return <Component />;
   })}
 </Layout>

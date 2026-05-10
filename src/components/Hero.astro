@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 const homepageEntry = await getEntry('homepage', 'homepage');
-const hero = homepageEntry.data.hero;
+const hero = homepageEntry.data.sections.find(s => s.section_type === 'hero')!;
 ---
 
 <section class="relative h-screen overflow-hidden">

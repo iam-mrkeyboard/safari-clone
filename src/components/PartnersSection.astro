@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 const homepageEntry = await getEntry('homepage', 'homepage');
-const homepage = homepageEntry.data;
+const section = homepageEntry.data.sections.find(s => s.section_type === 'partners')!;
 const partners = (await getCollection('partners')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -10,8 +10,8 @@ const marqueePartners = [...partners, ...partners, ...partners, ...partners];
 
 <section class="bg-lighter py-16 overflow-hidden">
   <div class="mx-auto max-w-5xl px-4 xl:px-8 mb-10">
-    <h2 class="text-3xl font-raleway font-bold text-stone-800 text-center mb-4">{homepage.partners_heading}</h2>
-    <p class="text-stone-600 text-center max-w-2xl mx-auto">{homepage.partners_text}</p>
+    <h2 class="text-3xl font-raleway font-bold text-stone-800 text-center mb-4">{section.heading}</h2>
+    <p class="text-stone-600 text-center max-w-2xl mx-auto">{section.text}</p>
   </div>
   
   <div class="relative flex overflow-hidden">

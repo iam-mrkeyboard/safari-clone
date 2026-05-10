@@ -27,8 +27,8 @@
           branch: "main",
           load_netlify_identity: false
         },
-        media_folder: "public/assets/blog",
-        public_folder: "/assets/blog",
+        media_folder: "public/assets/uploads",
+        public_folder: "/assets/uploads",
         collections: [
           {
             name: "site",
@@ -58,7 +58,7 @@
                     fields: [
                       { label: "Heading", name: "heading", widget: "string" },
                       { label: "Description", name: "description", widget: "text" },
-                      { label: "Image URL", name: "image", widget: "string" },
+                      { label: "Image URL", name: "image", widget: "image" },
                       {
                         label: "Stats", name: "stats", widget: "list",
                         fields: [
@@ -75,7 +75,7 @@
                     fields: [
                       { label: "Heading", name: "heading", widget: "string" },
                       { label: "Tagline", name: "tagline", widget: "text" },
-                      { label: "Image URL", name: "image", widget: "string" },
+                      { label: "Image URL", name: "image", widget: "image" },
                       { label: "Button Text", name: "button_text", widget: "string" },
                       { label: "Button Link", name: "button_link", widget: "string" },
                     ],
@@ -127,7 +127,7 @@
             fields: [
               { label: "Title", name: "title", widget: "string" },
               { label: "Subtitle", name: "subtitle", widget: "string" },
-              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Image URL", name: "image", widget: "image" },
               { label: "Link", name: "link", widget: "string" },
               { label: "Order", name: "order", widget: "number", value_type: "int" },
             ],
@@ -140,7 +140,7 @@
             slug: "{{slug}}",
             fields: [
               { label: "Title", name: "title", widget: "string" },
-              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Image URL", name: "image", widget: "image" },
               { label: "Link", name: "link", widget: "string" },
               { label: "Order", name: "order", widget: "number", value_type: "int" },
             ],
@@ -153,7 +153,7 @@
             slug: "{{slug}}",
             fields: [
               { label: "Title", name: "title", widget: "string" },
-              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Image URL", name: "image", widget: "image" },
               { label: "Duration", name: "duration", widget: "string" },
               { label: "Price (numbers only)", name: "price", widget: "string" },
               { label: "Badge", name: "badge", widget: "string", required: false },
@@ -171,7 +171,7 @@
             slug: "{{slug}}",
             fields: [
               { label: "Title", name: "title", widget: "string" },
-              { label: "Image URL", name: "image", widget: "string" },
+              { label: "Image URL", name: "image", widget: "image" },
               { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" },
               { label: "Tag (Luxury / Mid-Range)", name: "tag", widget: "string" },
               { label: "Link", name: "link", widget: "string" },
@@ -186,7 +186,7 @@
             slug: "{{slug}}",
             fields: [
               { label: "Name", name: "name", widget: "string" },
-              { label: "Avatar URL", name: "avatar", widget: "string" },
+              { label: "Avatar URL", name: "avatar", widget: "image" },
               { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" },
               { label: "Title", name: "title", widget: "string" },
               { label: "Date", name: "date", widget: "datetime" },
@@ -203,7 +203,7 @@
             slug: "{{slug}}",
             fields: [
               { label: "Name", name: "name", widget: "string" },
-              { label: "Logo URL", name: "image", widget: "string" },
+              { label: "Logo URL", name: "image", widget: "image" },
               { label: "Link URL", name: "link", widget: "string" },
               { label: "Order", name: "order", widget: "number", value_type: "int" },
             ],
@@ -218,7 +218,7 @@
               { label: "Title", name: "title", widget: "string" },
               { label: "Date", name: "date", widget: "datetime" },
               { label: "Category", name: "category", widget: "string" },
-              { label: "Thumbnail URL", name: "thumbnail", widget: "string", required: false },
+              { label: "Thumbnail URL", name: "thumbnail", widget: "image", required: false },
               { label: "Author", name: "author", widget: "string" },
               { label: "Description", name: "description", widget: "text", required: false },
               { label: "Body", name: "body", widget: "markdown" },

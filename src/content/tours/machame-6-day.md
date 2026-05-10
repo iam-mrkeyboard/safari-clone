@@ -1,6 +1,6 @@
 ---
 title: "6-Day Machame Trek"
-image: "https://cdn.sanity.io/images/oot9i5yy/production/383e4ee3bc54328195a5fff6d1c57d76d76641f0-1620x1080.webp"
+image: "/assets/images/tours/machame-6-day.webp"
 duration: "6 days"
 price: "2160"
 badge: "Kilimanjaro"

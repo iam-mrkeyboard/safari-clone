@@ -27,7 +27,7 @@ function formatDate(date: Date) {
   <article>
     <div class="relative h-[50vh] md:h-[60vh]">
       <img
-        src={post.data.thumbnail ? `https://www.tazamaafricasafari.com/_next/image?url=${encodeURIComponent(post.data.thumbnail)}&w=1920&q=80` : '/assets/images/gallery/tanzania.jpg'}
+        src={post.data.thumbnail || '/assets/images/gallery/tanzania.jpg'}
         alt={post.data.title}
         class="w-full h-full object-cover"
         loading="lazy" decoding="async"

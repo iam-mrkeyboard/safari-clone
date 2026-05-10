@@ -1,6 +1,6 @@
 ---
 name: "kristincoellesmith"
-avatar: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/60/default-avatar-2020-64.jpg?w=100&h=100&s=1"
+avatar: "/assets/images/avatars/default-avatar-2.jpg"
 rating: 5
 title: "Huge gratitude to Tazama Africa – My Dream Team!"
 date: "2025-10-01"

@@ -20,7 +20,7 @@ function formatDate(date: Date) {
   <section class="relative py-20 md:py-28 bg-stone-900">
     <div class="absolute inset-0 overflow-hidden">
       <img
-        src="https://www.tazamaafricasafari.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Foot9i5yy%2Fproduction%2Fcb734a7c20d216b08fe0db8ed4082e8f45e084e2-1900x1000.jpg&w=1920&q=80"
+        src="/assets/images/blog/kilimanjaro-family.jpg"
         alt="Blog Hero"
         class="w-full h-full object-cover opacity-30"
         loading="lazy" decoding="async"
@@ -44,7 +44,7 @@ function formatDate(date: Date) {
             <a href={`/blogs/${post.slug}`} class="block">
               <div class="relative aspect-[16/10] overflow-hidden">
                 <img
-                  src={post.data.thumbnail ? `https://www.tazamaafricasafari.com/_next/image?url=${encodeURIComponent(post.data.thumbnail)}&w=1920&q=80` : '/assets/images/gallery/tanzania.jpg'}
+                  src={post.data.thumbnail || '/assets/images/gallery/tanzania.jpg'}
                   alt={post.data.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy" decoding="async"

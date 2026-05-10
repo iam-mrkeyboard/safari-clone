@@ -2,7 +2,7 @@
 title: "Your Mount Kilimanjaro Family"
 date: 2025-10-15
 category: "Trekking"
-thumbnail: "https://cdn.sanity.io/images/oot9i5yy/production/cb734a7c20d216b08fe0db8ed4082e8f45e084e2-1900x1000.jpg"
+thumbnail: "/assets/images/blog/kilimanjaro-family.jpg"
 author: "Tazama Africa Safaris"
 description: "Discover the warmth and expertise of your Mount Kilimanjaro climbing family - the guides, porters, and support team who make your summit dream possible."
 ---

@@ -1,6 +1,6 @@
 ---
 title: "5-Day Marangu Trek"
-image: "https://cdn.sanity.io/images/oot9i5yy/production/c97d4765e17a4b4e3abc35b534b179dc985fdcf8-1620x1080.webp"
+image: "/assets/images/tours/marangu-5-day.webp"
 duration: "5 days"
 price: "1788"
 badge: "Kilimanjaro"

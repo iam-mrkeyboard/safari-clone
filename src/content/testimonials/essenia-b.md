@@ -1,6 +1,6 @@
 ---
 name: "Essenia B"
-avatar: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/df/99/default-avatar-2020-40.jpg?w=100&h=100&s=1"
+avatar: "/assets/images/avatars/default-avatar-3.jpg"
 rating: 5
 title: "A once-in-a-lifetime experience!"
 date: "2025-10-01"

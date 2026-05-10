@@ -2,14 +2,14 @@
 hero:
   heading: "Your Next Adventure Awaits"
   tagline: "connect, celebrate & create memories"
-  video_url: "https://res.cloudinary.com/drhl0yu7y/video/upload/v1764753833/tazama-video_ijznqm.mp4"
+  video_url: "/assets/videos/tazama-video.mp4"
   whatsapp_number: "+255754922334"
   scroll_to: "#categories"
 
 about:
   heading: "Why Travel With Tazama Africa Safaris"
   description: "We pride ourselves on collaborating with top-tier partners to ensure our guests receive the best experiences Africa has to offer. Whether it's a luxury safari, trekking adventure, or beach holiday, we're committed to creating unforgettable journeys."
-  image: "https://res.cloudinary.com/drhl0yu7y/image/upload/v1763461486/pexels-magda-ehlers-pexels-1320609_npvqkj.jpg"
+  image: "/assets/images/about-section.webp"
   stats:
     - value: "15+"
       label: "Years Experience"
@@ -23,7 +23,7 @@ about:
 contact:
   heading: "Let's Plan Your Perfect Escape!"
   tagline: "Whether you're looking for a guided safari or a serene retreat, we're here to help make it happen. Reach out to discuss options and get answers to all your travel questions."
-  image: "https://res.cloudinary.com/drhl0yu7y/image/upload/v1730973516/DSC09836_kipash.webp"
+  image: "/assets/images/contact-section.webp"
   button_text: "Contact Us"
   button_link: "/contact"
 

@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-const site = await getEntry('site', 'settings');
-const { homepage } = site.data;
+const homepageEntry = await getEntry('homepage', 'homepage');
+const homepage = homepageEntry.data;
 const tours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
 );

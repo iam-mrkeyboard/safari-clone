@@ -1,6 +1,6 @@
 ---
 title: "8-Day Lemosho Trek"
-image: "/assets/images/tours/lemosho-8-day.jpg"
+image: "/assets/images/tours/lemosho-8-day.webp"
 duration: "8 days"
 price: "2842"
 badge: "Kilimanjaro"

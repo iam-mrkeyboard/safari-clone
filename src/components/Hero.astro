@@ -5,7 +5,9 @@ const hero = homepageEntry.data.sections.find(s => s.section_type === 'hero')!;
 ---
 
 <section class="relative h-screen overflow-hidden">
-  <video autoplay muted loop playsinline preload="none" poster={hero.poster_image} class="hero-video absolute inset-0 h-full w-full object-cover">
+  <img src={hero.poster_image} alt="" class="hero-poster absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+  
+  <video autoplay muted loop playsinline preload="metadata" class="hero-video absolute inset-0 h-full w-full object-cover" id="hero-video">
     <source src={hero.video_url} type="video/mp4">
   </video>
   
@@ -24,3 +26,23 @@ const hero = homepageEntry.data.sections.find(s => s.section_type === 'hero')!;
     </a>
   </div>
 </section>
+
+<style>
+  .hero-poster {
+    transition: opacity 1.2s ease;
+  }
+  .hero-video {
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+</style>
+
+<script>
+  const video = document.getElementById('hero-video');
+  function fadeToVideo() {
+    video.style.opacity = '1';
+  }
+  video.addEventListener('playing', fadeToVideo);
+  video.addEventListener('loadeddata', fadeToVideo);
+  if (video.readyState >= 2) fadeToVideo();
+</script>

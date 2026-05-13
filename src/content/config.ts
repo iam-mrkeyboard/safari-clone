@@ -32,10 +32,20 @@ const site = defineCollection({
         youtube_url: z.string(),
         tiktok_url: z.string(),
       }),
+      nav_columns: z.array(z.object({
+        title: z.string(),
+        links: z.array(z.object({
+          label: z.string(),
+          url: z.string(),
+        })),
+      })).optional(),
     }),
     meta: z.object({
       site_name: z.string(),
       site_url: z.string(),
+      default_description: z.string().optional(),
+      og_image: z.string().optional(),
+      twitter_handle: z.string().optional(),
     }),
   }),
 });

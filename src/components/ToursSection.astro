@@ -1,7 +1,7 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-const homepageEntry = await getEntry('homepage', 'homepage');
-const section = homepageEntry.data.sections.find(s => s.section_type === 'tours')!;
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+const { section } = Astro.props;
 const tours = (await getCollection('tours')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -23,7 +23,7 @@ function formatPrice(price: string) {
       {tours.slice(0, 6).map((tour) => (
         <a href={tour.data.link} class="group relative overflow-hidden rounded-2xl bg-lighter shadow-lg card-lift">
           <div class="relative overflow-hidden aspect-[16/10]">
-            <img src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
+            <Image src={tour.data.image} alt={tour.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" width={800} height={500} />
             {tour.data.badge && (
               <span class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{tour.data.badge}</span>
             )}

@@ -26,11 +26,16 @@ const sectionComponents: Record<string, any> = {
   testimonials: TestimonialsSection,
   contact: ContactSection,
 };
+
+const sectionProps: Record<string, any> = {};
+for (const section of visibleSections) {
+  sectionProps[section.section_type] = { section };
+}
 ---
 
 <Layout title="Tazama Africa Safaris - East Africa Safaris">
   {visibleSections.map((section) => {
     const Component = sectionComponents[section.section_type];
-    return <Component />;
+    return <Component section={section} />;
   })}
 </Layout>

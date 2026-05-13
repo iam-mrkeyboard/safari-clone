@@ -1,14 +1,11 @@
 ---
 import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 const site = await getEntry('site', 'settings');
 const whatsNumber = site.data.whatsapp_number;
 ---
-
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-  <div class="mx-auto max-w-7xl px-4 xl:px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href="/" class="flex-shrink-0 z-50 relative">
-        <img src="/assets/uploads/logo-tazama-gold.png" alt="Tazama Africa" class="h-10 md:h-12 transition-all duration-500" loading="eager" />
+<a href="/" class="flex-shrink-0 z-50 relative">
+        <Image src="/assets/uploads/logo-tazama-gold.png" alt="Tazama Africa" class="h-10 md:h-12 transition-all duration-500" width={200} height={50} loading="eager" />
       </a>
       
       <div class="hidden lg:flex items-center gap-1">

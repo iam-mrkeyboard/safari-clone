@@ -1,7 +1,7 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-const homepageEntry = await getEntry('homepage', 'homepage');
-const section = homepageEntry.data.sections.find(s => s.section_type === 'lodges')!;
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+const { section } = Astro.props;
 const lodges = (await getCollection('lodges')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -29,7 +29,7 @@ function Stars({ rating }: { rating: number }) {
       {lodges.map((lodge) => (
         <a href={lodge.data.link} class="group overflow-hidden rounded-2xl bg-lighter shadow-lg card-lift">
           <div class="relative overflow-hidden aspect-[4/3]">
-            <img src={lodge.data.image} alt={lodge.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
+            <Image src={lodge.data.image} alt={lodge.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" width={800} height={600} />
             <span class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-full" class:list={lodge.data.tag === 'Luxury' ? 'bg-primary' : 'bg-stone-600'}>{lodge.data.tag}</span>
           </div>
           <div class="p-6">

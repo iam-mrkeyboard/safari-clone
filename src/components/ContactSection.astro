@@ -1,16 +1,15 @@
 ---
-import { getEntry } from 'astro:content';
-const homepageEntry = await getEntry('homepage', 'homepage');
-const contact = homepageEntry.data.sections.find(s => s.section_type === 'contact')!;
+import { Image } from 'astro:assets';
+const { section } = Astro.props;
 ---
 
 <section id="contact" class="relative py-20 lg:py-28">
-  <img src={contact.image} alt="" class="absolute inset-0 h-full w-full object-cover brightness-[0.4]" loading="lazy" decoding="async" />
+  <Image src={section.image} alt="" class="absolute inset-0 h-full w-full object-cover brightness-[0.4]" width={1920} height={1080} loading="eager" />
   
   <div class="relative z-10 mx-auto max-w-5xl px-4 xl:px-8 text-center text-white">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold mb-6">{contact.heading}</h2>
-    <p class="text-lg text-stone-200 max-w-2xl mx-auto mb-10">{contact.tagline}</p>
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold mb-6">{section.heading}</h2>
+    <p class="text-lg text-stone-200 max-w-2xl mx-auto mb-10">{section.tagline}</p>
     
-    <a href={contact.button_link} class="inline-block rounded-full bg-primary px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary-dark">{contact.button_text}</a>
+    <a href={section.button_link} class="inline-block rounded-full bg-primary px-8 py-3 font-raleway font-semibold text-white transition-colors hover:bg-primary-dark">{section.button_text}</a>
   </div>
 </section>

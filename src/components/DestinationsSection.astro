@@ -1,7 +1,7 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-const homepageEntry = await getEntry('homepage', 'homepage');
-const section = homepageEntry.data.sections.find(s => s.section_type === 'destinations')!;
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+const { section } = Astro.props;
 const destinations = (await getCollection('destinations')).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -18,7 +18,7 @@ const destinations = (await getCollection('destinations')).sort(
     <div class="grid grid-cols-2 gap-5 md:gap-8">
       {destinations.map((dest) => (
         <a href={dest.data.link} class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-          <img src={dest.data.image} alt={dest.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
+          <Image src={dest.data.image} alt={dest.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width={800} height={600} />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <h3 class="text-2xl md:text-3xl font-raleway font-bold text-white mb-1">{dest.data.title}</h3>

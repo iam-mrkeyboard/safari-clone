@@ -1,5 +1,5 @@
 ---
-hero_image: "/assets/uploads/contact-section.webp"
+hero_image: "../../assets/uploads/contact-section.webp"
 hero_tagline: "Get in Touch"
 hero_title: "Let's Start Your Journey"
 hero_description: "Reach out and our team will craft the perfect African adventure tailored just for you."

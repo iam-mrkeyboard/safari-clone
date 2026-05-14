@@ -4,8 +4,8 @@ sections:
     visible: true
     heading: "Your Next Adventure Awaits"
     tagline: "connect, celebrate & create memories"
-    video_url: "/assets/uploads/tazama-video.mp4"
-    poster_image: "/assets/uploads/hero-poster.webp"
+    video_url: "../../assets/uploads/tazama-video.mp4"
+    poster_image: "../../assets/uploads/hero-poster.webp"
     scroll_to: "#categories"
   - section_type: categories
     visible: true
@@ -15,7 +15,7 @@ sections:
     visible: true
     heading: "Why Travel With Tazama Africa Safaris"
     description: "We pride ourselves on collaborating with top-tier partners to ensure our guests receive the best experiences Africa has to offer. Whether it's a luxury safari, trekking adventure, or beach holiday, we're committed to creating unforgettable journeys."
-    image: "/assets/uploads/about-section.webp"
+    image: "../../assets/uploads/about-section.webp"
     stats:
       - value: "15+"
         label: "Years Experience"
@@ -50,7 +50,7 @@ sections:
     visible: true
     heading: "Let's Plan Your Perfect Escape!"
     tagline: "Whether you're looking for a guided safari or a serene retreat, we're here to help make it happen. Reach out to discuss options and get answers to all your travel questions."
-    image: "/assets/uploads/contact-section.webp"
+    image: "../../assets/uploads/contact-section.webp"
     button_text: "Contact Us"
     button_link: "/contact"
 ---

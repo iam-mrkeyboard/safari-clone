@@ -1,6 +1,6 @@
 ---
 name: "Steph C"
-avatar: "/assets/uploads/default-avatar-1.jpg"
+avatar: "../../assets/uploads/default-avatar-1.jpg"
 rating: 5
 title: "Epic journey of climbing Mount Kilimanjaro"
 date: "2025-10-01"

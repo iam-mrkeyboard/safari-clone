@@ -1,5 +1,5 @@
 ---
-hero_image: "/assets/uploads/about-section.webp"
+hero_image: "../../assets/uploads/about-section.webp"
 hero_tagline: "About Tazama"
 hero_title: "Crafting Journeys That Matter"
 hero_description: "For over 15 years, we've been connecting travelers with the soul of East Africa — one unforgettable experience at a time."
@@ -10,7 +10,7 @@ story_paragraphs:
   - "Tazama was born from a deep love for Tanzania's wild landscapes and the people who call them home. What started as a small guiding operation has grown into a boutique safari company known for authentic, high-touch experiences that go far beyond the typical game drive."
   - "Our exceptional guides and dedicated team bring decades of combined experience, ensuring every aspect of your journey is flawlessly executed. We forge partnerships with suppliers who share our commitment to environmentally sustainable practices — prioritizing local, women-owned, and community-led businesses whenever possible."
   - "Whether you're standing at the summit of Kilimanjaro or watching the sun spill across the Serengeti plains, we pledge an experience that is genuine, thrilling, and deeply respectful of the lands we explore."
-story_image: "/assets/uploads/about-section.webp"
+story_image: "../../assets/uploads/about-section.webp"
 values_heading: "We Do Tanzania Differently"
 values_description: "We believe travel can be a force for good — for our guests, our communities, and the wild places we protect."
 values:

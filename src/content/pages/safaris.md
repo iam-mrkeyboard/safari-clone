@@ -1,5 +1,5 @@
 ---
-hero_image: "/assets/uploads/safari-hero.jpg"
+hero_image: "../../assets/uploads/safari-hero.jpg"
 hero_tagline: "Wild Encounters"
 hero_title: "Tanzania Safaris"
 hero_description: "Few places rival Tanzania as a wildlife destination. From the Serengeti's golden plains to the Ngorongoro Crater — every moment is extraordinary."

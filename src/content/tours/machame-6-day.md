@@ -1,6 +1,6 @@
 ---
 title: "6-Day Machame Trek"
-image: "/assets/uploads/machame-6-day.webp"
+image: "../../assets/uploads/machame-6-day.webp"
 duration: "6 days"
 price: "2160"
 badge: "Kilimanjaro"

@@ -1,6 +1,6 @@
 ---
 title: "4-Day Zanzibar Escape with Nakupenda Island"
-image: "/assets/uploads/zanzibar-escape-4-day.jpg"
+image: "../../assets/uploads/zanzibar-escape-4-day.jpg"
 duration: "4 days"
 price: "716"
 badge: ""

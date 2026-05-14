@@ -1,6 +1,6 @@
 ---
 title: "5 Days Serengeti and Ngorongoro Mid-Luxury Safari"
-image: "/assets/uploads/serengeti-mid-luxury.jpg"
+image: "../../assets/uploads/serengeti-mid-luxury.jpg"
 duration: "5 days"
 price: "2197"
 badge: "Luxury"

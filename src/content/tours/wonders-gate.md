@@ -1,6 +1,6 @@
 ---
 title: "The Wonders Gate Safari"
-image: "/assets/uploads/wonders-gate.jpg"
+image: "../../assets/uploads/wonders-gate.jpg"
 duration: "6 days"
 price: "2493.27"
 badge: "Safari"

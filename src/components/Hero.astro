@@ -6,7 +6,7 @@ const { section } = Astro.props;
 <section class="relative h-screen overflow-hidden">
   <Image src={section.poster_image} alt="" class="hero-poster absolute inset-0 h-full w-full object-cover" width={1920} height={1080} loading="eager" />
   
-  <video autoplay muted loop playsinline preload="metadata" class="hero-video absolute inset-0 h-full w-full object-cover" id="hero-video">
+  <video autoplay muted loop playsinline preload="none" class="hero-video absolute inset-0 h-full w-full object-cover" id="hero-video">
     <source src={section.video_url} type="video/mp4">
   </video>
   

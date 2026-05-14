@@ -1,0 +1,323 @@
+backend:
+  name: git-gateway
+  branch: main
+  load_netlify_identity: false
+
+media_folder: "src/assets/uploads"
+public_folder: "../../assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - name: "settings"
+        label: "Global Settings"
+        file: "src/content/site/settings.md"
+        fields:
+          - { label: "WhatsApp Number", name: "whatsapp_number", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Newsletter Heading", name: "newsletter_heading", widget: "string" }
+              - { label: "Newsletter Text", name: "newsletter_text", widget: "text" }
+              - { label: "Newsletter Button", name: "newsletter_button", widget: "string" }
+              - { label: "CTA Heading", name: "cta_heading", widget: "string" }
+              - { label: "CTA Text", name: "cta_text", widget: "text" }
+              - { label: "CTA Button", name: "cta_button", widget: "string" }
+              - { label: "CTA Button Link", name: "cta_button_link", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - label: "Social Links"
+                name: "social"
+                widget: "object"
+                fields:
+                  - { label: "TripAdvisor URL", name: "tripadvisor_url", widget: "string" }
+                  - { label: "Instagram URL", name: "instagram_url", widget: "string" }
+                  - { label: "Facebook URL", name: "facebook_url", widget: "string" }
+                  - { label: "YouTube URL", name: "youtube_url", widget: "string" }
+                  - { label: "TikTok URL", name: "tiktok_url", widget: "string" }
+          - label: "Meta"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { label: "Site Name", name: "site_name", widget: "string" }
+              - { label: "Site URL", name: "site_url", widget: "string" }
+
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - name: "homepage"
+        label: "Homepage Sections"
+        file: "src/content/homepage/homepage.md"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            summary: "{{fields.section_type}} - {{fields.heading}}"
+            fields:
+              - label: "Section Type"
+                name: "section_type"
+                widget: "select"
+                options:
+                  - { label: "Hero", value: "hero" }
+                  - { label: "Categories", value: "categories" }
+                  - { label: "About", value: "about" }
+                  - { label: "Destinations", value: "destinations" }
+                  - { label: "Tours", value: "tours" }
+                  - { label: "Partners", value: "partners" }
+                  - { label: "Lodges", value: "lodges" }
+                  - { label: "Testimonials", value: "testimonials" }
+                  - { label: "Contact", value: "contact" }
+              - { label: "Visible", name: "visible", widget: "boolean", default: true }
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Tagline", name: "tagline", widget: "string", required: false }
+              - { label: "Text", name: "text", widget: "text", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Background Video", name: "video_url", widget: "file", required: false }
+              - { label: "Poster Image", name: "poster_image", widget: "image", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false }
+              - { label: "Button Text", name: "button_text", widget: "string", required: false }
+              - { label: "Button Link", name: "button_link", widget: "string", required: false }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "safaris"
+        label: "Safaris Page"
+        file: "src/content/pages/safaris.md"
+        fields:
+          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+          - { label: "Intro Heading", name: "intro_heading", widget: "string" }
+          - { label: "Intro Description", name: "intro_description", widget: "text" }
+          - { label: "Features Heading", name: "features_heading", widget: "string" }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+      - name: "kilimanjaro"
+        label: "Kilimanjaro Page"
+        file: "src/content/pages/kilimanjaro.md"
+        fields:
+          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+          - { label: "Intro Heading", name: "intro_heading", widget: "string" }
+          - label: "Intro Text"
+            name: "intro_text"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Intro Image", name: "intro_image", widget: "image", required: false }
+          - { label: "Routes Heading", name: "routes_heading", widget: "string" }
+          - label: "Routes"
+            name: "routes"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Days", name: "days", widget: "string" }
+              - { label: "Difficulty", name: "difficulty", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Treks Heading", name: "treks_heading", widget: "string" }
+
+      - name: "tours"
+        label: "Tours Page"
+        file: "src/content/pages/tours.md"
+        fields:
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+
+      - name: "about"
+        label: "About Page"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+          - { label: "Story Tagline", name: "story_tagline", widget: "string" }
+          - { label: "Story Heading", name: "story_heading", widget: "string" }
+          - { label: "Story Description", name: "story_description", widget: "text" }
+          - label: "Story Extra Paragraphs"
+            name: "story_paragraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Story Image", name: "story_image", widget: "image" }
+          - { label: "Values Heading", name: "values_heading", widget: "string" }
+          - { label: "Values Description", name: "values_description", widget: "text" }
+          - label: "Values"
+            name: "values"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "CTA Heading", name: "cta_heading", widget: "string" }
+          - { label: "CTA Description", name: "cta_description", widget: "text" }
+          - label: "CTA Buttons"
+            name: "cta_buttons"
+            widget: "list"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+              - { label: "Style", name: "style", widget: "select", options: ["primary", "outline"] }
+
+      - name: "contact"
+        label: "Contact Page"
+        file: "src/content/pages/contact.md"
+        fields:
+          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+          - { label: "Contact Heading", name: "contact_heading", widget: "string" }
+          - { label: "Contact Description", name: "contact_description", widget: "text" }
+          - label: "Offices"
+            name: "offices"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Phone", name: "phone", widget: "string", required: false }
+              - { label: "Address Line 1", name: "address_line1", widget: "string", required: false }
+              - { label: "Address Line 2", name: "address_line2", widget: "string", required: false }
+              - { label: "Hours Line 1", name: "hours_line1", widget: "string", required: false }
+              - { label: "Hours Line 2", name: "hours_line2", widget: "string", required: false }
+          - { label: "Form Heading", name: "form_heading", widget: "string" }
+          - { label: "Name Label", name: "form_name_label", widget: "string" }
+          - { label: "Email Label", name: "form_email_label", widget: "string" }
+          - { label: "Subject Label", name: "form_subject_label", widget: "string" }
+          - { label: "Message Label", name: "form_message_label", widget: "string" }
+          - { label: "Submit Text", name: "form_submit_text", widget: "string" }
+          - { label: "Privacy Text", name: "form_privacy_text", widget: "string" }
+          - { label: "CTA Heading", name: "cta_heading", widget: "string" }
+          - { label: "CTA Description", name: "cta_description", widget: "text" }
+          - label: "CTA Buttons"
+            name: "cta_buttons"
+            widget: "list"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+              - { label: "Style", name: "style", widget: "select", options: ["primary", "outline"] }
+
+      - name: "blogs"
+        label: "Blogs Page"
+        file: "src/content/pages/blogs.md"
+        fields:
+          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Description", name: "hero_description", widget: "text" }
+
+  - name: "categories"
+    label: "Categories"
+    folder: "src/content/categories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string" }
+      - { label: "Image URL", name: "image", widget: "image" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "destinations"
+    label: "Destinations"
+    folder: "src/content/destinations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image URL", name: "image", widget: "image" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "tours"
+    label: "Tours"
+    folder: "src/content/tours"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image URL", name: "image", widget: "image" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Price (numbers only)", name: "price", widget: "string" }
+      - { label: "Badge", name: "badge", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "lodges"
+    label: "Lodges"
+    folder: "src/content/lodges"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image URL", name: "image", widget: "image" }
+      - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" }
+      - { label: "Tag (Luxury / Mid-Range)", name: "tag", widget: "string" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "src/content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Avatar URL", name: "avatar", widget: "image" }
+      - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Travel Type", name: "travel_type", widget: "string" }
+      - { label: "Text", name: "text", widget: "text" }
+      - { label: "Video URL (upload via Media or paste YouTube link)", name: "video_url", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "partners"
+    label: "Partners"
+    folder: "src/content/partners"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Logo URL", name: "image", widget: "image" }
+      - { label: "Link URL", name: "link", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Thumbnail URL", name: "thumbnail", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }

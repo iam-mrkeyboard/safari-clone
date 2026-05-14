@@ -2,11 +2,11 @@ import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     date: z.date(),
     category: z.string(),
-    thumbnail: z.string().optional(),
+    thumbnail: image().optional(),
     author: z.string(),
     description: z.string().optional(),
   }),
@@ -14,7 +14,7 @@ const blog = defineCollection({
 
 const site = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     whatsapp_number: z.string(),
     footer: z.object({
       newsletter_heading: z.string(),
@@ -44,7 +44,7 @@ const site = defineCollection({
       site_name: z.string(),
       site_url: z.string(),
       default_description: z.string().optional(),
-      og_image: z.string().optional(),
+      og_image: image().optional(),
       twitter_handle: z.string().optional(),
     }),
   }),
@@ -52,7 +52,7 @@ const site = defineCollection({
 
 const homepage = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     sections: z.array(z.object({
       section_type: z.string(),
       visible: z.boolean(),
@@ -62,8 +62,8 @@ const homepage = defineCollection({
       description: z.string().optional(),
       subtitle: z.string().optional(),
       video_url: z.string().optional(),
-      poster_image: z.string().optional(),
-      image: z.string().optional(),
+      poster_image: image().optional(),
+      image: image().optional(),
       scroll_to: z.string().optional(),
       button_text: z.string().optional(),
       button_link: z.string().optional(),
@@ -77,10 +77,10 @@ const homepage = defineCollection({
 
 const categories = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     subtitle: z.string(),
-    image: z.string(),
+    image: image(),
     link: z.string(),
     order: z.number(),
   }),
@@ -88,9 +88,9 @@ const categories = defineCollection({
 
 const destinations = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
-    image: z.string(),
+    image: image(),
     link: z.string(),
     order: z.number(),
   }),
@@ -98,9 +98,9 @@ const destinations = defineCollection({
 
 const tours = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
-    image: z.string(),
+    image: image(),
     duration: z.string(),
     price: z.string(),
     badge: z.string().optional(),
@@ -112,9 +112,9 @@ const tours = defineCollection({
 
 const lodges = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
-    image: z.string(),
+    image: image(),
     rating: z.number(),
     tag: z.string(),
     link: z.string(),
@@ -124,9 +124,9 @@ const lodges = defineCollection({
 
 const testimonials = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
-    avatar: z.string(),
+    avatar: image(),
     rating: z.number(),
     title: z.string(),
     date: z.string(),
@@ -139,9 +139,9 @@ const testimonials = defineCollection({
 
 const partners = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
-    image: z.string(),
+    image: image(),
     link: z.string(),
     order: z.number(),
   }),
@@ -149,8 +149,8 @@ const partners = defineCollection({
 
 const pages = defineCollection({
   type: 'content',
-  schema: z.object({
-    hero_image: z.string().optional(),
+  schema: ({ image }) => z.object({
+    hero_image: image().optional(),
     hero_tagline: z.string().optional(),
     hero_title: z.string().optional(),
     hero_description: z.string().optional(),
@@ -158,7 +158,7 @@ const pages = defineCollection({
     story_heading: z.string().optional(),
     story_description: z.string().optional(),
     story_paragraphs: z.array(z.string()).optional(),
-    story_image: z.string().optional(),
+    story_image: image().optional(),
     values_heading: z.string().optional(),
     values_description: z.string().optional(),
     values: z.array(z.object({
@@ -202,7 +202,7 @@ const pages = defineCollection({
       description: z.string(),
     })).optional(),
     intro_text: z.array(z.string()).optional(),
-    intro_image: z.string().optional(),
+    intro_image: image().optional(),
     routes_heading: z.string().optional(),
     routes: z.array(z.object({
       name: z.string(),

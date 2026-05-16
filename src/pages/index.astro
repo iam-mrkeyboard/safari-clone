@@ -29,13 +29,13 @@ const sectionComponents: Record<string, any> = {
 
 const sectionProps: Record<string, any> = {};
 for (const section of visibleSections) {
-  sectionProps[section.section_type] = { section };
+  sectionProps[section.type] = { section };
 }
 ---
 
 <Layout title="Tazama Africa Safaris - East Africa Safaris">
   {visibleSections.map((section) => {
-    const Component = sectionComponents[section.section_type];
+    const Component = sectionComponents[section.type];
     return <Component section={section} />;
   })}
 </Layout>

@@ -68,44 +68,98 @@ collections:
             name: "sections"
             widget: "list"
             collapsed: true
-            summary: "{{fields.section_type}} — {{fields.heading}}"
-            hint: "Click a section to expand and edit. Each section type uses different fields below."
-            fields:
-              - label: "Section Type"
-                name: "section_type"
-                widget: "select"
-                options:
-                  - { label: "Hero", value: "hero" }
-                  - { label: "Categories", value: "categories" }
-                  - { label: "About", value: "about" }
-                  - { label: "Destinations", value: "destinations" }
-                  - { label: "Tours", value: "tours" }
-                  - { label: "Partners", value: "partners" }
-                  - { label: "Lodges", value: "lodges" }
-                  - { label: "Testimonials", value: "testimonials" }
-                  - { label: "Contact", value: "contact" }
-              - { label: "Visible", name: "visible", widget: "boolean", default: true, hint: "Toggle to show or hide this section" }
-              - { label: "Heading", name: "heading", widget: "string", required: false }
-              - { label: "Tagline", name: "tagline", widget: "string", required: false }
-              - { label: "Text", name: "text", widget: "text", required: false }
-              - { label: "Description", name: "description", widget: "text", required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-              - { label: "Background Video", name: "video_url", widget: "file", required: false, hint: "Hero sections only — upload via Media Library or paste URL" }
-              - { label: "Poster Image", name: "poster_image", widget: "image", required: false, hint: "Hero sections only — shown while video loads or on mobile" }
-              - { label: "Image", name: "image", widget: "image", required: false, hint: "Used by About and Contact sections" }
-              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false, hint: "Hero and Contact sections — section ID to scroll to on button click" }
-              - { label: "Button Text", name: "button_text", widget: "string", required: false, hint: "Contact sections only" }
-              - { label: "Button Link", name: "button_link", widget: "string", required: false, hint: "Contact sections only" }
-              - label: "Stats"
-                name: "stats"
-                widget: "list"
-                required: false
-                collapsed: true
-                summary: "{{fields.value}} {{fields.label}}"
-                hint: "About sections only — add key numbers like '15+ Years Experience'"
+            types:
+              - label: "Hero"
+                name: "hero"
                 fields:
-                  - { label: "Value", name: "value", widget: "string", hint: "e.g., 500+, 10K" }
-                  - { label: "Label", name: "label", widget: "string", hint: "e.g., Happy Travelers, Tours Completed" }
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Tagline", name: "tagline", widget: "string", required: false }
+                  - { label: "Background Video", name: "video_url", widget: "file", required: false, hint: "Upload via Media Library or paste URL" }
+                  - { label: "Poster Image", name: "poster_image", widget: "image", required: false, hint: "Shown while video loads or on mobile" }
+                  - { label: "Scroll To", name: "scroll_to", widget: "string", required: false, hint: "Section ID to scroll to on button click" }
+
+              - label: "Categories"
+                name: "categories"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+                  - label: "Category Cards"
+                    name: "items"
+                    widget: "list"
+                    collapsed: false
+                    summary: "{{fields.title}} — {{fields.subtitle}}"
+                    hint: "Add, edit, or reorder the category cards shown on the homepage"
+                    fields:
+                      - { label: "Title", name: "title", widget: "string", hint: "e.g., Safaris, Trekking" }
+                      - { label: "Subtitle", name: "subtitle", widget: "string", hint: "Short description under title" }
+                      - { label: "Image", name: "image", widget: "image", hint: "Category card image — 800x1000px recommended" }
+                      - { label: "Link", name: "link", widget: "string", hint: "Page URL — e.g., /safaris" }
+                      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
+
+              - label: "About"
+                name: "about"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+                  - label: "Stats"
+                    name: "stats"
+                    widget: "list"
+                    required: false
+                    collapsed: true
+                    summary: "{{fields.value}} {{fields.label}}"
+                    fields:
+                      - { label: "Value", name: "value", widget: "string", hint: "e.g., 15+, 500+" }
+                      - { label: "Label", name: "label", widget: "string", hint: "e.g., Years Experience, Happy Travelers" }
+
+              - label: "Destinations"
+                name: "destinations"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+              - label: "Tours"
+                name: "tours"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+
+              - label: "Partners"
+                name: "partners"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+
+              - label: "Lodges"
+                name: "lodges"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+
+              - label: "Testimonials"
+                name: "testimonials"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text", required: false }
+
+              - label: "Contact"
+                name: "contact"
+                fields:
+                  - { label: "Visible", name: "visible", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Tagline", name: "tagline", widget: "string", required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+                  - { label: "Button Text", name: "button_text", widget: "string", required: false }
+                  - { label: "Button Link", name: "button_link", widget: "string", required: false }
 
   - name: "pages"
     label: "Pages"
@@ -267,23 +321,6 @@ collections:
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
-
-  - name: "categories"
-    label: "Categories"
-    description: "Manage homepage category cards — Trekking, Safaris, Beach Holidays, etc."
-    icon: "category"
-    folder: "src/content/categories"
-    create: true
-    slug: "{{slug}}"
-    search: true
-    sortable_fields: ["order", "title"]
-    summary: "{{title}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Subtitle", name: "subtitle", widget: "string", hint: "Short description shown below title" }
-      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
-      - { label: "Link", name: "link", widget: "string", hint: "Destination URL when card is clicked" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "destinations"
     label: "Destinations"

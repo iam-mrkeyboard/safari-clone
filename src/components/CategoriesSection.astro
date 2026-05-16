@@ -1,10 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 const { section } = Astro.props;
-const categories = (await getCollection('categories')).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const items = section.items?.sort((a, b) => a.order - b.order) || [];
 ---
 
 <section id="categories" class="bg-white py-20 lg:py-28">
@@ -15,14 +12,14 @@ const categories = (await getCollection('categories')).sort(
     </div>
     
     <div class="grid gap-8 md:grid-cols-3">
-      {categories.map((cat) => (
-        <a href={cat.data.link} class="group relative overflow-hidden rounded-2xl aspect-[4/5] sm:aspect-[3/4]">
-          <Image src={cat.data.image} alt={cat.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width={800} height={1000} />
+      {items.map((item) => (
+        <a href={item.link} class="group relative overflow-hidden rounded-2xl aspect-[4/5] sm:aspect-[3/4]">
+          <Image src={item.image} alt={item.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width={800} height={1000} />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
           <div class="absolute inset-0 border border-white/20 rounded-2xl m-4"></div>
           <div class="absolute top-0 left-0 right-0 p-8">
-            <h3 class="text-2xl font-raleway font-bold text-white mb-2">{cat.data.title}</h3>
-            <p class="text-sm text-white/80">{cat.data.subtitle}</p>
+            <h3 class="text-2xl font-raleway font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-sm text-white/80">{item.subtitle}</p>
           </div>
           <div class="absolute bottom-0 left-0 right-0 p-8">
             <span class="inline-flex items-center gap-2 border border-white text-white px-6 py-3 rounded-full font-raleway font-semibold text-sm transition-all duration-300 group-hover:bg-primary group-hover:border-primary">

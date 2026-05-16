@@ -53,36 +53,83 @@ const site = defineCollection({
 const homepage = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
-    sections: z.array(z.object({
-      section_type: z.string(),
-      visible: z.boolean(),
-      heading: z.string().optional(),
-      tagline: z.string().optional(),
-      text: z.string().optional(),
-      description: z.string().optional(),
-      subtitle: z.string().optional(),
-      video_url: z.string().optional(),
-      poster_image: image().optional(),
-      image: image().optional(),
-      scroll_to: z.string().optional(),
-      button_text: z.string().optional(),
-      button_link: z.string().optional(),
-      stats: z.array(z.object({
-        value: z.string(),
-        label: z.string(),
-      })).optional(),
-    })),
-  }),
-});
-
-const categories = defineCollection({
-  type: 'content',
-  schema: ({ image }) => z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    image: image(),
-    link: z.string(),
-    order: z.number(),
+    sections: z.array(
+      z.discriminatedUnion("type", [
+        z.object({
+          type: z.literal("hero"),
+          visible: z.boolean(),
+          heading: z.string(),
+          tagline: z.string().optional(),
+          video_url: z.string().optional(),
+          poster_image: image().optional(),
+          scroll_to: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("categories"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+          items: z.array(z.object({
+            title: z.string(),
+            subtitle: z.string(),
+            image: image(),
+            link: z.string(),
+            order: z.number(),
+          })).optional(),
+        }),
+        z.object({
+          type: z.literal("about"),
+          visible: z.boolean(),
+          heading: z.string(),
+          description: z.string().optional(),
+          image: image().optional(),
+          stats: z.array(z.object({
+            value: z.string(),
+            label: z.string(),
+          })).optional(),
+        }),
+        z.object({
+          type: z.literal("destinations"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+          subtitle: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("tours"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("partners"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("lodges"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("testimonials"),
+          visible: z.boolean(),
+          heading: z.string(),
+          text: z.string().optional(),
+        }),
+        z.object({
+          type: z.literal("contact"),
+          visible: z.boolean(),
+          heading: z.string(),
+          tagline: z.string().optional(),
+          image: image().optional(),
+          button_text: z.string().optional(),
+          button_link: z.string().optional(),
+        }),
+      ])
+    ),
   }),
 });
 
@@ -219,7 +266,6 @@ export const collections = {
   site,
   homepage,
   pages,
-  categories,
   destinations,
   tours,
   lodges,

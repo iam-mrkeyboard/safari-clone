@@ -3,12 +3,163 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager - Tazama Africa Safaris</title>
+  <title>Tazama Africa Safaris — Content Manager</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-primary: #00AA6C;
+      --brand-primary-dark: #009960;
+      --brand-dark: #1a1a2e;
+      --brand-darker: #0d0d0d;
+      --brand-light: #E6F9F1;
+      --brand-text: #e8e0d4;
+      --brand-success: #00AA6C;
+      --brand-danger: #c1121f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    /* Top bar override */
+    header.css-11t9188 {
+      background: var(--brand-darker) !important;
+      border-bottom: 2px solid var(--brand-primary) !important;
+    }
+
+    /* Login page styling */
+    body > div:first-child > div {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Sidebar styling */
+    nav.css-142h613 {
+      background: var(--brand-dark) !important;
+    }
+
+    nav.css-142h613 a,
+    nav.css-142h613 button {
+      color: var(--brand-text) !important;
+      font-family: 'Poppins', sans-serif !important;
+      transition: all 0.2s ease !important;
+    }
+
+    nav.css-142h613 a:hover,
+    nav.css-142h613 button:hover {
+      background: var(--brand-primary) !important;
+      color: #fff !important;
+    }
+
+    nav.css-142h613 a.css-1q5n5g3,
+    nav.css-142h613 a.active {
+      background: var(--brand-primary) !important;
+      color: #fff !important;
+    }
+
+    /* Buttons */
+    button.css-1f3c68w,
+    button.css-1r7qjl7 {
+      font-family: 'Poppins', sans-serif !important;
+      border-radius: 6px !important;
+      font-weight: 500 !important;
+      transition: all 0.2s ease !important;
+    }
+
+    button.css-1f3c68w:hover,
+    button.css-1r7qjl7:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 12px rgba(0, 170, 108, 0.3) !important;
+    }
+
+    /* Form fields */
+    input, textarea, select {
+      font-family: 'Poppins', sans-serif !important;
+      border-radius: 6px !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif !important;
+      font-weight: 600 !important;
+    }
+
+    /* Collection labels */
+    .collection-top {
+      border-bottom: 2px solid var(--brand-primary) !important;
+    }
+
+    /* Preview pane */
+    .css-1g7k21z {
+      background: var(--brand-light) !important;
+    }
+
+    /* Loading screen */
+    #nc-root > div > div:first-child {
+      background: var(--brand-darker) !important;
+    }
+
+    /* Custom branding overlay */
+    .admin-brand-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--brand-darker) 0%, var(--brand-dark) 100%);
+      border-bottom: 2px solid var(--brand-primary);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-brand-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .admin-brand-text h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-brand-text p {
+      margin: 0;
+      font-size: 11px;
+      color: var(--brand-text);
+      opacity: 0.7;
+    }
+
+    /* Editor hints */
+    .field-hint {
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/react@^18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@^18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/htm@^3.1.1/dist/htm.umd.js"></script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
@@ -20,5 +171,6 @@
       });
     }
   </script>
+  <script src="/admin/preview.js" type="module"></script>
 </body>
 </html>

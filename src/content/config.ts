@@ -132,6 +132,17 @@ const homepage = defineCollection({
           visible: z.boolean(),
           heading: z.string(),
           text: z.string().optional(),
+          items: z.array(z.object({
+            name: z.string(),
+            avatar: image(),
+            rating: z.number(),
+            title: z.string(),
+            date: z.string(),
+            travel_type: z.string(),
+            text: z.string(),
+            video_url: z.string().optional(),
+            order: z.number(),
+          })).optional(),
         }),
         z.object({
           type: z.literal("contact"),
@@ -157,21 +168,6 @@ const tours = defineCollection({
     badge: z.string().optional(),
     category: z.string(),
     link: z.string(),
-    order: z.number(),
-  }),
-});
-
-const testimonials = defineCollection({
-  type: 'content',
-  schema: ({ image }) => z.object({
-    name: z.string(),
-    avatar: image(),
-    rating: z.number(),
-    title: z.string(),
-    date: z.string(),
-    travel_type: z.string(),
-    text: z.string(),
-    video_url: z.string().optional(),
     order: z.number(),
   }),
 });
@@ -259,6 +255,5 @@ export const collections = {
   homepage,
   pages,
   tours,
-  testimonials,
   partners,
 };

@@ -108,6 +108,31 @@ sections:
     visible: true
     heading: What Our Guests Say
     text: Real stories from travelers who experienced the magic of Africa with us
+    items:
+      - name: Essenia B
+        avatar: ../../assets/uploads/default-avatar-3.jpg
+        rating: 5
+        title: "A once-in-a-lifetime experience!"
+        date: "2025-10-01"
+        travel_type: Couples
+        text: "We did a five-day safari with Tazama Africa Tours – and it was absolutely incredible. The entire trip was perfectly tailored to us, every little detail was just right. From the very beginning, we felt comfortable and truly welcomed. Our guide was amazing – warm, professional, and so passionate about sharing his country and its wildlife with us. We can genuinely recommend booking with Tazama – trust us, it will be one of the best decisions of your life."
+        order: 1
+      - name: kristincoellesmith
+        avatar: ../../assets/uploads/default-avatar-2.jpg
+        rating: 5
+        title: "Huge gratitude to Tazama Africa – My Dream Team!"
+        date: "2025-10-01"
+        travel_type: Friends
+        text: "The strength, dedication, and heart from the Tazama Team was second to none! The team was knowledgeable beyond belief, professional while also being personal and caring; all leading to an experience exceeding all of my expectations. If you are looking for a climbing tour, nature and wildlife tour, or beach vacation I can't imagine that you would find any better."
+        order: 2
+      - name: Steph C
+        avatar: ../../assets/uploads/default-avatar-1.jpg
+        rating: 5
+        title: "Epic journey of climbing Mount Kilimanjaro"
+        date: "2025-10-01"
+        travel_type: Friends
+        text: "Tazama organised us a journey of a life time. Something has shifted in my soul from this experience. It wouldn't be possible with each and everyone involved."
+        order: 3
   - type: contact
     visible: true
     heading: Let's Plan Your Perfect Escape!

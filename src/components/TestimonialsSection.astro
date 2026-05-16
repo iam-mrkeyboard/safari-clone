@@ -1,13 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 const { section } = Astro.props;
-const testimonials = (await getCollection('testimonials')).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const items = section.items?.sort((a, b) => a.order - b.order) || [];
 
-const featured = testimonials[0];
-const gridTestimonials = testimonials.slice(1);
+const featured = items[0];
+const gridTestimonials = items.slice(1);
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -67,17 +64,17 @@ function VideoEmbed({ url, className = '' }: { url: string; className?: string }
           <div class="absolute top-6 right-8 md:top-8 md:right-12 text-primary/10">
             <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
           </div>
-          {featured.data.video_url ? (
+          {featured.video_url ? (
             <div class="relative grid md:grid-cols-2 gap-8 items-center">
-              <div set:html={VideoEmbed({ url: featured.data.video_url, className: 'shadow-lg' })}></div>
+              <div set:html={VideoEmbed({ url: featured.video_url, className: 'shadow-lg' })}></div>
               <div class="flex flex-col items-start">
-                <div class="flex gap-1 mb-4" set:html={Stars({ rating: featured.data.rating, size: 22 })}></div>
-                <blockquote class="text-lg md:text-xl lg:text-2xl font-raleway text-stone-700 leading-relaxed mb-6">"{featured.data.text}"</blockquote>
+                <div class="flex gap-1 mb-4" set:html={Stars({ rating: featured.rating, size: 22 })}></div>
+                <blockquote class="text-lg md:text-xl lg:text-2xl font-raleway text-stone-700 leading-relaxed mb-6">"{featured.text}"</blockquote>
                 <div class="flex items-center gap-3">
-                  <Image src={featured.data.avatar} alt={featured.data.name} class="h-12 w-12 rounded-full object-cover ring-4 ring-white shadow-lg" width={100} height={100} />
+                  <Image src={featured.avatar} alt={featured.name} class="h-12 w-12 rounded-full object-cover ring-4 ring-white shadow-lg" width={100} height={100} />
                   <div>
-                    <span class="font-raleway font-bold text-stone-800 text-lg block">{featured.data.name}</span>
-                    <span class="text-stone-500 text-sm">{formatDate(featured.data.date)} • {featured.data.travel_type}</span>
+                    <span class="font-raleway font-bold text-stone-800 text-lg block">{featured.name}</span>
+                    <span class="text-stone-500 text-sm">{formatDate(featured.date)} • {featured.travel_type}</span>
                   </div>
                 </div>
               </div>
@@ -85,15 +82,15 @@ function VideoEmbed({ url, className = '' }: { url: string; className?: string }
           ) : (
             <div class="relative flex flex-col md:flex-row gap-8 items-start">
               <div class="flex-shrink-0">
-                <Image src={featured.data.avatar} alt={featured.data.name} class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover ring-4 ring-white shadow-lg" width={100} height={100} />
+                <Image src={featured.avatar} alt={featured.name} class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover ring-4 ring-white shadow-lg" width={100} height={100} />
               </div>
               <div class="flex-1">
-                <div class="flex gap-1 mb-4" set:html={Stars({ rating: featured.data.rating, size: 22 })}></div>
-                <blockquote class="text-lg md:text-xl lg:text-2xl font-raleway text-stone-700 leading-relaxed mb-6">"{featured.data.text}"</blockquote>
+                <div class="flex gap-1 mb-4" set:html={Stars({ rating: featured.rating, size: 22 })}></div>
+                <blockquote class="text-lg md:text-xl lg:text-2xl font-raleway text-stone-700 leading-relaxed mb-6">"{featured.text}"</blockquote>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <span class="font-raleway font-bold text-stone-800 text-lg">{featured.data.name}</span>
+                  <span class="font-raleway font-bold text-stone-800 text-lg">{featured.name}</span>
                   <span class="text-stone-400">•</span>
-                  <span class="text-stone-500 text-sm">{formatDate(featured.data.date)} • {featured.data.travel_type}</span>
+                  <span class="text-stone-500 text-sm">{formatDate(featured.date)} • {featured.travel_type}</span>
                 </div>
               </div>
             </div>
@@ -107,17 +104,17 @@ function VideoEmbed({ url, className = '' }: { url: string; className?: string }
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {gridTestimonials.map((t) => (
             <div class="group relative bg-white rounded-2xl p-7 shadow-sm border border-stone-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
-              {t.data.video_url ? (
+              {t.video_url ? (
                 <>
-                  <div class="mb-4" set:html={VideoEmbed({ url: t.data.video_url })}></div>
+                  <div class="mb-4" set:html={VideoEmbed({ url: t.video_url })}></div>
                   <div class="flex items-center gap-3 mb-3">
-                    <Image src={t.data.avatar} alt={t.data.name} class="h-11 w-11 rounded-full object-cover ring-2 ring-stone-50" width={100} height={100} />
+                    <Image src={t.avatar} alt={t.name} class="h-11 w-11 rounded-full object-cover ring-2 ring-stone-50" width={100} height={100} />
                     <div>
-                      <h4 class="font-raleway font-semibold text-stone-800 text-sm">{t.data.name}</h4>
-                      <p class="text-xs text-stone-400">{formatDate(t.data.date)}</p>
+                      <h4 class="font-raleway font-semibold text-stone-800 text-sm">{t.name}</h4>
+                      <p class="text-xs text-stone-400">{formatDate(t.date)}</p>
                     </div>
                   </div>
-                  <div class="flex gap-0.5" set:html={Stars({ rating: t.data.rating, size: 14 })}></div>
+                  <div class="flex gap-0.5" set:html={Stars({ rating: t.rating, size: 14 })}></div>
                 </>
               ) : (
                 <>
@@ -125,18 +122,18 @@ function VideoEmbed({ url, className = '' }: { url: string; className?: string }
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                   </div>
                   <div class="flex items-center gap-3 mb-4">
-                    <Image src={t.data.avatar} alt={t.data.name} class="h-11 w-11 rounded-full object-cover ring-2 ring-stone-50" width={100} height={100} />
+                    <Image src={t.avatar} alt={t.name} class="h-11 w-11 rounded-full object-cover ring-2 ring-stone-50" width={100} height={100} />
                     <div>
-                      <h4 class="font-raleway font-semibold text-stone-800 text-sm">{t.data.name}</h4>
-                      <p class="text-xs text-stone-400">{formatDate(t.data.date)}</p>
+                      <h4 class="font-raleway font-semibold text-stone-800 text-sm">{t.name}</h4>
+                      <p class="text-xs text-stone-400">{formatDate(t.date)}</p>
                     </div>
                   </div>
-                  <div class="flex gap-0.5 mb-3" set:html={Stars({ rating: t.data.rating, size: 14 })}></div>
-                  <h3 class="font-raleway font-semibold text-stone-800 mb-2 text-sm">{t.data.title}</h3>
-                  <p class="text-stone-500 text-sm leading-relaxed line-clamp-4">{t.data.text}</p>
+                  <div class="flex gap-0.5 mb-3" set:html={Stars({ rating: t.rating, size: 14 })}></div>
+                  <h3 class="font-raleway font-semibold text-stone-800 mb-2 text-sm">{t.title}</h3>
+                  <p class="text-stone-500 text-sm leading-relaxed line-clamp-4">{t.text}</p>
                   <div class="mt-4 pt-4 border-t border-stone-100 flex items-center gap-2">
                     <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                    <span class="text-xs font-medium text-primary">{t.data.travel_type}</span>
+                    <span class="text-xs font-medium text-primary">{t.travel_type}</span>
                   </div>
                 </>
               )}

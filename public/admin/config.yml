@@ -174,6 +174,22 @@ collections:
                   - { label: "Visible", name: "visible", widget: "boolean", default: true }
                   - { label: "Heading", name: "heading", widget: "string" }
                   - { label: "Text", name: "text", widget: "text", required: false }
+                  - label: "Testimonial Cards"
+                    name: "items"
+                    widget: "list"
+                    collapsed: false
+                    summary: "{{fields.name}} — {{fields.title}}"
+                    hint: "Add, edit, or reorder testimonials shown on the homepage"
+                    fields:
+                      - { label: "Name", name: "name", widget: "string", hint: "Customer name" }
+                      - { label: "Avatar", name: "avatar", widget: "image", hint: "Customer photo — square, at least 200x200px" }
+                      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
+                      - { label: "Title", name: "title", widget: "string", hint: "Short review title" }
+                      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+                      - { label: "Travel Type", name: "travel_type", widget: "string", hint: "e.g., Family Safari, Honeymoon, Friends" }
+                      - { label: "Text", name: "text", widget: "text", hint: "Full testimonial text" }
+                      - { label: "Video URL", name: "video_url", widget: "string", required: false, hint: "YouTube or Vimeo link — optional" }
+                      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
               - label: "Contact"
                 name: "contact"
@@ -366,27 +382,6 @@ collections:
       - { label: "Link", name: "link", widget: "string", hint: "URL path — e.g., /tours/7-day-lemosho-kilimanjaro-trek" }
       - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
       - { label: "Body", name: "body", widget: "markdown", hint: "Full tour description, itinerary, pricing details" }
-
-  - name: "testimonials"
-    label: "Testimonials"
-    description: "Manage customer reviews and testimonials"
-    icon: "format_quote"
-    folder: "src/content/testimonials"
-    create: true
-    slug: "{{slug}}"
-    search: true
-    sortable_fields: ["order", "date", "name"]
-    summary: "{{name}} — {{title}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Avatar URL", name: "avatar", widget: "image", hint: "Customer photo — square, at least 200x200px" }
-      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
-      - { label: "Title", name: "title", widget: "string", hint: "Short review title or summary" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Travel Type", name: "travel_type", widget: "string", hint: "e.g., Family Safari, Honeymoon, Group Trek" }
-      - { label: "Text", name: "text", widget: "text", hint: "Full testimonial text" }
-      - { label: "Video URL", name: "video_url", widget: "string", required: false, hint: "YouTube or Vimeo link — optional" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "partners"
     label: "Partners"

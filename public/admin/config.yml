@@ -67,8 +67,9 @@ collections:
           - label: "Sections"
             name: "sections"
             widget: "list"
-            collapsed: false
+            collapsed: true
             summary: "{{fields.section_type}} — {{fields.heading}}"
+            hint: "Click a section to expand and edit. Each section type uses different fields below."
             fields:
               - label: "Section Type"
                 name: "section_type"
@@ -89,17 +90,19 @@ collections:
               - { label: "Text", name: "text", widget: "text", required: false }
               - { label: "Description", name: "description", widget: "text", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-              - { label: "Background Video", name: "video_url", widget: "file", required: false, hint: "Upload via Media Library or paste URL" }
-              - { label: "Poster Image", name: "poster_image", widget: "image", required: false, hint: "Shown while video loads or on mobile" }
-              - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false, hint: "Section ID to scroll to on button click" }
-              - { label: "Button Text", name: "button_text", widget: "string", required: false }
-              - { label: "Button Link", name: "button_link", widget: "string", required: false }
+              - { label: "Background Video", name: "video_url", widget: "file", required: false, hint: "Hero sections only — upload via Media Library or paste URL" }
+              - { label: "Poster Image", name: "poster_image", widget: "image", required: false, hint: "Hero sections only — shown while video loads or on mobile" }
+              - { label: "Image", name: "image", widget: "image", required: false, hint: "Used by About and Contact sections" }
+              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false, hint: "Hero and Contact sections — section ID to scroll to on button click" }
+              - { label: "Button Text", name: "button_text", widget: "string", required: false, hint: "Contact sections only" }
+              - { label: "Button Link", name: "button_link", widget: "string", required: false, hint: "Contact sections only" }
               - label: "Stats"
                 name: "stats"
                 widget: "list"
                 required: false
+                collapsed: true
                 summary: "{{fields.value}} {{fields.label}}"
+                hint: "About sections only — add key numbers like '15+ Years Experience'"
                 fields:
                   - { label: "Value", name: "value", widget: "string", hint: "e.g., 500+, 10K" }
                   - { label: "Label", name: "label", widget: "string", hint: "e.g., Happy Travelers, Tours Completed" }

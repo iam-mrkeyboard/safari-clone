@@ -122,6 +122,17 @@ collections:
                   - { label: "Heading", name: "heading", widget: "string" }
                   - { label: "Text", name: "text", widget: "text", required: false }
                   - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                  - label: "Destination Cards"
+                    name: "items"
+                    widget: "list"
+                    collapsed: false
+                    summary: "{{fields.title}}"
+                    hint: "Add, edit, or reorder destination cards shown on the homepage"
+                    fields:
+                      - { label: "Title", name: "title", widget: "string", hint: "e.g., Tanzania, Kenya" }
+                      - { label: "Image", name: "image", widget: "image", hint: "Destination image — 800x600px recommended" }
+                      - { label: "Link", name: "link", widget: "string", hint: "Page URL — e.g., /safaris" }
+                      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
               - label: "Tours"
                 name: "tours"
@@ -321,22 +332,6 @@ collections:
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
-
-  - name: "destinations"
-    label: "Destinations"
-    description: "Manage destination cards — Tanzania, Kenya, Uganda, Rwanda"
-    icon: "public"
-    folder: "src/content/destinations"
-    create: true
-    slug: "{{slug}}"
-    search: true
-    sortable_fields: ["order", "title"]
-    summary: "{{title}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
-      - { label: "Link", name: "link", widget: "string", hint: "Destination URL when card is clicked" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "tours"
     label: "Tours"

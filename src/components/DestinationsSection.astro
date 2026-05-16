@@ -1,10 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 const { section } = Astro.props;
-const destinations = (await getCollection('destinations')).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const items = section.items?.sort((a, b) => a.order - b.order) || [];
 ---
 
 <section id="destinations" class="bg-dark py-20 lg:py-28">
@@ -16,12 +13,12 @@ const destinations = (await getCollection('destinations')).sort(
     </div>
     
     <div class="grid grid-cols-2 gap-5 md:gap-8">
-      {destinations.map((dest) => (
-        <a href={dest.data.link} class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-          <Image src={dest.data.image} alt={dest.data.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width={800} height={600} />
+      {items.map((item) => (
+        <a href={item.link} class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
+          <Image src={item.image} alt={item.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width={800} height={600} />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
-            <h3 class="text-2xl md:text-3xl font-raleway font-bold text-white mb-1">{dest.data.title}</h3>
+            <h3 class="text-2xl md:text-3xl font-raleway font-bold text-white mb-1">{item.title}</h3>
             <span class="text-primary text-xs font-raleway font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Discover more →</span>
           </div>
         </a>

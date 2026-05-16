@@ -53,6 +53,23 @@ sections:
       coastlines, Tazama crafts fully personalized itineraries shaped around
       you.
     subtitle: Click on any destination below and begin your journey.
+    items:
+      - title: Tanzania
+        image: ../../assets/uploads/destination-tanzania.jpg
+        link: /safaris
+        order: 1
+      - title: Uganda
+        image: ../../assets/uploads/destination-chimps.webp
+        link: /east-africa/uganda
+        order: 2
+      - title: Rwanda
+        image: ../../assets/uploads/destination-rwanda.jpg
+        link: /east-africa/rwanda
+        order: 3
+      - title: Kenya
+        image: ../../assets/uploads/destination-kenya.jpg
+        link: /east-africa/kenya
+        order: 4
   - type: tours
     visible: true
     heading: Authentic & Timeless Adventures

@@ -3,21 +3,31 @@ backend:
   branch: main
   load_netlify_identity: false
 
+publish_mode: editorial_workflow
+
 media_folder: "src/assets/uploads"
 public_folder: "../../assets/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
   - name: "site"
     label: "Site Settings"
+    description: "Manage global site settings, WhatsApp number, footer content, and social links"
+    icon: "settings"
     files:
       - name: "settings"
         label: "Global Settings"
         file: "src/content/site/settings.md"
         fields:
-          - { label: "WhatsApp Number", name: "whatsapp_number", widget: "string" }
+          - { label: "WhatsApp Number", name: "whatsapp_number", widget: "string", hint: "Include country code, e.g., +255 123 456 789" }
           - label: "Footer"
             name: "footer"
             widget: "object"
+            collapsed: false
             fields:
               - { label: "Newsletter Heading", name: "newsletter_heading", widget: "string" }
               - { label: "Newsletter Text", name: "newsletter_text", widget: "text" }
@@ -25,26 +35,30 @@ collections:
               - { label: "CTA Heading", name: "cta_heading", widget: "string" }
               - { label: "CTA Text", name: "cta_text", widget: "text" }
               - { label: "CTA Button", name: "cta_button", widget: "string" }
-              - { label: "CTA Button Link", name: "cta_button_link", widget: "string" }
-              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "CTA Button Link", name: "cta_button_link", widget: "string", hint: "Full URL or path, e.g., /contact" }
+              - { label: "Copyright", name: "copyright", widget: "string", hint: "e.g., © 2026 Tazama Africa Safaris. All rights reserved." }
               - label: "Social Links"
                 name: "social"
                 widget: "object"
+                hint: "Add full URLs including https://"
                 fields:
-                  - { label: "TripAdvisor URL", name: "tripadvisor_url", widget: "string" }
-                  - { label: "Instagram URL", name: "instagram_url", widget: "string" }
-                  - { label: "Facebook URL", name: "facebook_url", widget: "string" }
-                  - { label: "YouTube URL", name: "youtube_url", widget: "string" }
-                  - { label: "TikTok URL", name: "tiktok_url", widget: "string" }
+                  - { label: "TripAdvisor URL", name: "tripadvisor_url", widget: "string", required: false }
+                  - { label: "Instagram URL", name: "instagram_url", widget: "string", required: false }
+                  - { label: "Facebook URL", name: "facebook_url", widget: "string", required: false }
+                  - { label: "YouTube URL", name: "youtube_url", widget: "string", required: false }
+                  - { label: "TikTok URL", name: "tiktok_url", widget: "string", required: false }
           - label: "Meta"
             name: "meta"
             widget: "object"
+            collapsed: false
             fields:
-              - { label: "Site Name", name: "site_name", widget: "string" }
-              - { label: "Site URL", name: "site_url", widget: "string" }
+              - { label: "Site Name", name: "site_name", widget: "string", hint: "Displayed in browser tab and SEO" }
+              - { label: "Site URL", name: "site_url", widget: "string", hint: "Base URL without trailing slash, e.g., https://tazamaafricasafaris.com" }
 
   - name: "homepage"
     label: "Homepage"
+    description: "Configure homepage sections — hero, categories, tours, testimonials, and more"
+    icon: "home"
     files:
       - name: "homepage"
         label: "Homepage Sections"
@@ -53,7 +67,8 @@ collections:
           - label: "Sections"
             name: "sections"
             widget: "list"
-            summary: "{{fields.section_type}} - {{fields.heading}}"
+            collapsed: false
+            summary: "{{fields.section_type}} — {{fields.heading}}"
             fields:
               - label: "Section Type"
                 name: "section_type"
@@ -68,34 +83,37 @@ collections:
                   - { label: "Lodges", value: "lodges" }
                   - { label: "Testimonials", value: "testimonials" }
                   - { label: "Contact", value: "contact" }
-              - { label: "Visible", name: "visible", widget: "boolean", default: true }
+              - { label: "Visible", name: "visible", widget: "boolean", default: true, hint: "Toggle to show or hide this section" }
               - { label: "Heading", name: "heading", widget: "string", required: false }
               - { label: "Tagline", name: "tagline", widget: "string", required: false }
               - { label: "Text", name: "text", widget: "text", required: false }
               - { label: "Description", name: "description", widget: "text", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-              - { label: "Background Video", name: "video_url", widget: "file", required: false }
-              - { label: "Poster Image", name: "poster_image", widget: "image", required: false }
+              - { label: "Background Video", name: "video_url", widget: "file", required: false, hint: "Upload via Media Library or paste URL" }
+              - { label: "Poster Image", name: "poster_image", widget: "image", required: false, hint: "Shown while video loads or on mobile" }
               - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false }
+              - { label: "Scroll To", name: "scroll_to", widget: "string", required: false, hint: "Section ID to scroll to on button click" }
               - { label: "Button Text", name: "button_text", widget: "string", required: false }
               - { label: "Button Link", name: "button_link", widget: "string", required: false }
               - label: "Stats"
                 name: "stats"
                 widget: "list"
                 required: false
+                summary: "{{fields.value}} {{fields.label}}"
                 fields:
-                  - { label: "Value", name: "value", widget: "string" }
-                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Value", name: "value", widget: "string", hint: "e.g., 500+, 10K" }
+                  - { label: "Label", name: "label", widget: "string", hint: "e.g., Happy Travelers, Tours Completed" }
 
   - name: "pages"
     label: "Pages"
+    description: "Edit content for individual pages — Safaris, Kilimanjaro, Tours, About, Contact, Blogs"
+    icon: "description"
     files:
       - name: "safaris"
         label: "Safaris Page"
         file: "src/content/pages/safaris.md"
         fields:
-          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", hint: "Recommended: 1920x1080px, landscape" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
@@ -105,6 +123,8 @@ collections:
           - label: "Features"
             name: "features"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
@@ -113,7 +133,7 @@ collections:
         label: "Kilimanjaro Page"
         file: "src/content/pages/kilimanjaro.md"
         fields:
-          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", hint: "Recommended: 1920x1080px, landscape" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
@@ -121,16 +141,20 @@ collections:
           - label: "Intro Text"
             name: "intro_text"
             widget: "list"
+            collapsed: false
+            summary: "Paragraph {{index}}"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - { label: "Intro Image", name: "intro_image", widget: "image", required: false }
           - { label: "Routes Heading", name: "routes_heading", widget: "string" }
           - label: "Routes"
             name: "routes"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.name}} — {{fields.days}}"
             fields:
               - { label: "Name", name: "name", widget: "string" }
-              - { label: "Days", name: "days", widget: "string" }
-              - { label: "Difficulty", name: "difficulty", widget: "string" }
+              - { label: "Days", name: "days", widget: "string", hint: "e.g., 6 Days, 7 Days" }
+              - { label: "Difficulty", name: "difficulty", widget: "string", hint: "e.g., Moderate, Challenging, Hard" }
               - { label: "Description", name: "description", widget: "text" }
           - { label: "Treks Heading", name: "treks_heading", widget: "string" }
 
@@ -146,7 +170,7 @@ collections:
         label: "About Page"
         file: "src/content/pages/about.md"
         fields:
-          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", hint: "Recommended: 1920x1080px, landscape" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
@@ -156,6 +180,8 @@ collections:
           - label: "Story Extra Paragraphs"
             name: "story_paragraphs"
             widget: "list"
+            collapsed: false
+            summary: "Paragraph {{index}}"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - { label: "Story Image", name: "story_image", widget: "image" }
           - { label: "Values Heading", name: "values_heading", widget: "string" }
@@ -163,30 +189,36 @@ collections:
           - label: "Values"
             name: "values"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
           - label: "Stats"
             name: "stats"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.value}} {{fields.label}}"
             fields:
-              - { label: "Value", name: "value", widget: "string" }
-              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Value", name: "value", widget: "string", hint: "e.g., 10+, 5000+" }
+              - { label: "Label", name: "label", widget: "string", hint: "e.g., Years Experience, Happy Clients" }
           - { label: "CTA Heading", name: "cta_heading", widget: "string" }
           - { label: "CTA Description", name: "cta_description", widget: "text" }
           - label: "CTA Buttons"
             name: "cta_buttons"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.text}} → {{fields.link}}"
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "Link", name: "link", widget: "string" }
-              - { label: "Style", name: "style", widget: "select", options: ["primary", "outline"] }
+              - { label: "Style", name: "style", widget: "select", options: ["primary", "outline"], hint: "Primary = filled button, Outline = bordered button" }
 
       - name: "contact"
         label: "Contact Page"
         file: "src/content/pages/contact.md"
         fields:
-          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", hint: "Recommended: 1920x1080px, landscape" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
@@ -195,8 +227,10 @@ collections:
           - label: "Offices"
             name: "offices"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.title}} — {{fields.email}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Title", name: "title", widget: "string", hint: "e.g., Tanzania Office, UK Office" }
               - { label: "Email", name: "email", widget: "string", required: false }
               - { label: "Phone", name: "phone", widget: "string", required: false }
               - { label: "Address Line 1", name: "address_line1", widget: "string", required: false }
@@ -215,6 +249,8 @@ collections:
           - label: "CTA Buttons"
             name: "cta_buttons"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.text}} → {{fields.link}}"
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "Link", name: "link", widget: "string" }
@@ -224,100 +260,135 @@ collections:
         label: "Blogs Page"
         file: "src/content/pages/blogs.md"
         fields:
-          - { label: "Hero Image", name: "hero_image", widget: "image" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", hint: "Recommended: 1920x1080px, landscape" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Description", name: "hero_description", widget: "text" }
 
   - name: "categories"
     label: "Categories"
+    description: "Manage homepage category cards — Trekking, Safaris, Beach Holidays, etc."
+    icon: "category"
     folder: "src/content/categories"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "title"]
+    summary: "{{title}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image" }
-      - { label: "Link", name: "link", widget: "string" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", hint: "Short description shown below title" }
+      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
+      - { label: "Link", name: "link", widget: "string", hint: "Destination URL when card is clicked" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "destinations"
     label: "Destinations"
+    description: "Manage destination cards — Tanzania, Kenya, Uganda, Rwanda"
+    icon: "public"
     folder: "src/content/destinations"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "title"]
+    summary: "{{title}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image" }
-      - { label: "Link", name: "link", widget: "string" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
+      - { label: "Link", name: "link", widget: "string", hint: "Destination URL when card is clicked" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "tours"
     label: "Tours"
+    description: "Create and manage tour packages — safaris, Kilimanjaro treks, Zanzibar trips"
+    icon: "flight"
     folder: "src/content/tours"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "title", "price"]
+    summary: "{{title}} — {{duration}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image" }
-      - { label: "Duration", name: "duration", widget: "string" }
-      - { label: "Price (numbers only)", name: "price", widget: "string" }
-      - { label: "Badge", name: "badge", widget: "string", required: false }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Link", name: "link", widget: "string" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Title", name: "title", widget: "string", hint: "e.g., 7-Day Lemosho Kilimanjaro Trek" }
+      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px, landscape" }
+      - { label: "Duration", name: "duration", widget: "string", hint: "e.g., 7 days, 5 days / 4 nights" }
+      - { label: "Price", name: "price", widget: "string", hint: "Numbers only, no $ or commas — e.g., 2487" }
+      - { label: "Badge", name: "badge", widget: "string", required: false, hint: "Tag shown on card — e.g., Kilimanjaro, Best Seller" }
+      - { label: "Category", name: "category", widget: "string", hint: "e.g., Kilimanjaro, Safari, Zanzibar" }
+      - { label: "Link", name: "link", widget: "string", hint: "URL path — e.g., /tours/7-day-lemosho-kilimanjaro-trek" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Full tour description, itinerary, pricing details" }
 
   - name: "lodges"
     label: "Lodges"
+    description: "Manage lodge/accommodation listings"
+    icon: "hotel"
     folder: "src/content/lodges"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "title", "rating"]
+    summary: "{{title}} — {{rating}}★"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image" }
-      - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" }
-      - { label: "Tag (Luxury / Mid-Range)", name: "tag", widget: "string" }
-      - { label: "Link", name: "link", widget: "string" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
+      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
+      - { label: "Tag", name: "tag", widget: "string", hint: "e.g., Luxury, Mid-Range, Budget" }
+      - { label: "Link", name: "link", widget: "string", hint: "URL path for the lodge page" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "testimonials"
     label: "Testimonials"
+    description: "Manage customer reviews and testimonials"
+    icon: "format_quote"
     folder: "src/content/testimonials"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "date", "name"]
+    summary: "{{name}} — {{title}}"
     fields:
       - { label: "Name", name: "name", widget: "string" }
-      - { label: "Avatar URL", name: "avatar", widget: "image" }
-      - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Travel Type", name: "travel_type", widget: "string" }
-      - { label: "Text", name: "text", widget: "text" }
-      - { label: "Video URL (upload via Media or paste YouTube link)", name: "video_url", widget: "string", required: false }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Avatar URL", name: "avatar", widget: "image", hint: "Customer photo — square, at least 200x200px" }
+      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
+      - { label: "Title", name: "title", widget: "string", hint: "Short review title or summary" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Travel Type", name: "travel_type", widget: "string", hint: "e.g., Family Safari, Honeymoon, Group Trek" }
+      - { label: "Text", name: "text", widget: "text", hint: "Full testimonial text" }
+      - { label: "Video URL", name: "video_url", widget: "string", required: false, hint: "YouTube or Vimeo link — optional" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "partners"
     label: "Partners"
+    description: "Manage partner logos displayed on the homepage"
+    icon: "handshake"
     folder: "src/content/partners"
     create: true
     slug: "{{slug}}"
+    search: true
+    sortable_fields: ["order", "name"]
+    summary: "{{name}}"
     fields:
       - { label: "Name", name: "name", widget: "string" }
-      - { label: "Logo URL", name: "image", widget: "image" }
-      - { label: "Link URL", name: "link", widget: "string" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Logo URL", name: "image", widget: "image", hint: "PNG with transparent background preferred" }
+      - { label: "Link URL", name: "link", widget: "string", required: false, hint: "Partner website URL — optional" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "blog"
     label: "Blog Posts"
+    description: "Create and manage blog articles — travel tips, tour highlights, company news"
+    icon: "article"
     folder: "src/content/blog"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    search: true
+    sortable_fields: ["date", "title", "category"]
+    summary: "{{title}} — {{date}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Thumbnail URL", name: "thumbnail", widget: "image", required: false }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Category", name: "category", widget: "string", hint: "e.g., Trekking, Safari, Travel Tips" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, hint: "Featured image — recommended 1200x630px for social sharing" }
+      - { label: "Author", name: "author", widget: "string", hint: "e.g., Tazama Africa Safaris, John Doe" }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "Short summary for SEO and social sharing" }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Full article content — use headings, images, and formatting" }

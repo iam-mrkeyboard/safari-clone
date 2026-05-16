@@ -154,6 +154,19 @@ collections:
                   - { label: "Visible", name: "visible", widget: "boolean", default: true }
                   - { label: "Heading", name: "heading", widget: "string" }
                   - { label: "Text", name: "text", widget: "text", required: false }
+                  - label: "Lodge Cards"
+                    name: "items"
+                    widget: "list"
+                    collapsed: false
+                    summary: "{{fields.title}} — {{fields.tag}}"
+                    hint: "Add, edit, or reorder lodge cards shown on the homepage"
+                    fields:
+                      - { label: "Title", name: "title", widget: "string", hint: "e.g., Zuri Zanzibar Hotel & Resort" }
+                      - { label: "Image", name: "image", widget: "image", hint: "Lodge image — 800x600px recommended" }
+                      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
+                      - { label: "Tag", name: "tag", widget: "string", hint: "e.g., Luxury, Mid-Range, Budget" }
+                      - { label: "Link", name: "link", widget: "string", hint: "Lodge page URL" }
+                      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
               - label: "Testimonials"
                 name: "testimonials"
@@ -353,24 +366,6 @@ collections:
       - { label: "Link", name: "link", widget: "string", hint: "URL path — e.g., /tours/7-day-lemosho-kilimanjaro-trek" }
       - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
       - { label: "Body", name: "body", widget: "markdown", hint: "Full tour description, itinerary, pricing details" }
-
-  - name: "lodges"
-    label: "Lodges"
-    description: "Manage lodge/accommodation listings"
-    icon: "hotel"
-    folder: "src/content/lodges"
-    create: true
-    slug: "{{slug}}"
-    search: true
-    sortable_fields: ["order", "title", "rating"]
-    summary: "{{title}} — {{rating}}★"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image URL", name: "image", widget: "image", hint: "Recommended: 800x600px" }
-      - { label: "Rating", name: "rating", widget: "number", value_type: "int", hint: "1 to 5 stars" }
-      - { label: "Tag", name: "tag", widget: "string", hint: "e.g., Luxury, Mid-Range, Budget" }
-      - { label: "Link", name: "link", widget: "string", hint: "URL path for the lodge page" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "testimonials"
     label: "Testimonials"

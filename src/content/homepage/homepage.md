@@ -85,6 +85,25 @@ sections:
     heading: Not Sure Where to Stay?
     text: Whether you're looking for a budget-friendly option or a luxurious
       retreat, we have a range of accommodations to suit your needs.
+    items:
+      - title: Zuri Zanzibar Hotel & Resort
+        image: https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop
+        rating: 5
+        tag: Luxury
+        link: /lodges/zuri-zanzibar-hotel-and-resort
+        order: 1
+      - title: Siringit Camp
+        image: ../../assets/uploads/siringit-camp.jpg
+        rating: 4
+        tag: Mid-Range
+        link: /lodges/siringit-camps
+        order: 2
+      - title: Upendo Beach Zanzibar
+        image: ../../assets/uploads/upendo-beach.jpg
+        rating: 5
+        tag: Luxury
+        link: /lodges/upendo-beach-zanzibar
+        order: 3
   - type: testimonials
     visible: true
     heading: What Our Guests Say

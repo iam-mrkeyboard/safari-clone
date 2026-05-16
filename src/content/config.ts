@@ -118,6 +118,14 @@ const homepage = defineCollection({
           visible: z.boolean(),
           heading: z.string(),
           text: z.string().optional(),
+          items: z.array(z.object({
+            title: z.string(),
+            image: image(),
+            rating: z.number(),
+            tag: z.string(),
+            link: z.string(),
+            order: z.number(),
+          })).optional(),
         }),
         z.object({
           type: z.literal("testimonials"),
@@ -148,18 +156,6 @@ const tours = defineCollection({
     price: z.string(),
     badge: z.string().optional(),
     category: z.string(),
-    link: z.string(),
-    order: z.number(),
-  }),
-});
-
-const lodges = defineCollection({
-  type: 'content',
-  schema: ({ image }) => z.object({
-    title: z.string(),
-    image: image(),
-    rating: z.number(),
-    tag: z.string(),
     link: z.string(),
     order: z.number(),
   }),
@@ -263,7 +259,6 @@ export const collections = {
   homepage,
   pages,
   tours,
-  lodges,
   testimonials,
   partners,
 };

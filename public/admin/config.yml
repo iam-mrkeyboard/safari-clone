@@ -147,6 +147,17 @@ collections:
                   - { label: "Visible", name: "visible", widget: "boolean", default: true }
                   - { label: "Heading", name: "heading", widget: "string" }
                   - { label: "Text", name: "text", widget: "text", required: false }
+                  - label: "Partner Logos"
+                    name: "items"
+                    widget: "list"
+                    collapsed: false
+                    summary: "{{fields.name}}"
+                    hint: "Add, edit, or reorder partner logos shown on the homepage"
+                    fields:
+                      - { label: "Name", name: "name", widget: "string", hint: "Partner name" }
+                      - { label: "Logo", name: "image", widget: "image", hint: "Partner logo — PNG with transparent background preferred" }
+                      - { label: "Link", name: "link", widget: "string", required: false, hint: "Partner website URL — optional" }
+                      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
               - label: "Lodges"
                 name: "lodges"
@@ -382,22 +393,6 @@ collections:
       - { label: "Link", name: "link", widget: "string", hint: "URL path — e.g., /tours/7-day-lemosho-kilimanjaro-trek" }
       - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
       - { label: "Body", name: "body", widget: "markdown", hint: "Full tour description, itinerary, pricing details" }
-
-  - name: "partners"
-    label: "Partners"
-    description: "Manage partner logos displayed on the homepage"
-    icon: "handshake"
-    folder: "src/content/partners"
-    create: true
-    slug: "{{slug}}"
-    search: true
-    sortable_fields: ["order", "name"]
-    summary: "{{name}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Logo URL", name: "image", widget: "image", hint: "PNG with transparent background preferred" }
-      - { label: "Link URL", name: "link", widget: "string", required: false, hint: "Partner website URL — optional" }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", hint: "Lower number = appears first" }
 
   - name: "blog"
     label: "Blog Posts"

@@ -80,6 +80,19 @@ sections:
     heading: Our Partners
     text: We pride ourselves on collaborating with top-tier partners to ensure our
       guests receive the best experiences Africa has to offer.
+    items:
+      - name: Kafika House
+        image: ../../assets/uploads/partner-kafika-house.png
+        link: /partners/kafika-house
+        order: 1
+      - name: Rustic Pathways
+        image: ../../assets/uploads/partner-rustic-pathways.png
+        link: /partners/rustic-pathways
+        order: 2
+      - name: TATO
+        image: ../../assets/uploads/partner-tato.png
+        link: https://www.tatotz.org/
+        order: 3
   - type: lodges
     visible: true
     heading: Not Sure Where to Stay?

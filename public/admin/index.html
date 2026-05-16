@@ -11,12 +11,13 @@
     :root {
       --brand-primary: #00AA6C;
       --brand-primary-dark: #009960;
-      --brand-dark: #1a1a2e;
+      --brand-dark: #1a1a1a;
       --brand-darker: #0d0d0d;
       --brand-light: #E6F9F1;
-      --brand-text: #e8e0d4;
-      --brand-success: #00AA6C;
-      --brand-danger: #c1121f;
+      --brand-text: #374151;
+      --brand-white: #ffffff;
+      --brand-gray: #6b7280;
+      --brand-border: #e5e7eb;
     }
 
     * {
@@ -25,55 +26,83 @@
 
     body {
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      background: #f3f4f6 !important;
     }
 
-    /* Top bar override */
-    header.css-11t9188 {
-      background: var(--brand-darker) !important;
-      border-bottom: 2px solid var(--brand-primary) !important;
-    }
-
-    /* Login page styling */
-    body > div:first-child > div {
+    /* App container */
+    #nc-root {
       font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Sidebar styling */
-    nav.css-142h613 {
-      background: var(--brand-dark) !important;
+    /* Sidebar */
+    nav[aria-label="Collections"] {
+      background: var(--brand-white) !important;
+      border-right: 1px solid var(--brand-border) !important;
     }
 
-    nav.css-142h613 a,
-    nav.css-142h613 button {
+    nav[aria-label="Collections"] a,
+    nav[aria-label="Collections"] button {
+      font-family: 'Poppins', sans-serif !important;
       color: var(--brand-text) !important;
-      font-family: 'Poppins', sans-serif !important;
       transition: all 0.2s ease !important;
+      border-radius: 6px !important;
+      margin: 2px 8px !important;
     }
 
-    nav.css-142h613 a:hover,
-    nav.css-142h613 button:hover {
-      background: var(--brand-primary) !important;
-      color: #fff !important;
+    nav[aria-label="Collections"] a:hover,
+    nav[aria-label="Collections"] button:hover {
+      background: var(--brand-light) !important;
+      color: var(--brand-primary) !important;
     }
 
-    nav.css-142h613 a.css-1q5n5g3,
-    nav.css-142h613 a.active {
-      background: var(--brand-primary) !important;
-      color: #fff !important;
+    nav[aria-label="Collections"] a[aria-current="page"],
+    nav[aria-label="Collections"] a.active {
+      background: var(--brand-light) !important;
+      color: var(--brand-primary) !important;
+      font-weight: 600 !important;
+    }
+
+    /* Header */
+    header[role="banner"] {
+      background: var(--brand-white) !important;
+      border-bottom: 1px solid var(--brand-border) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Main content area */
+    main {
+      background: #f3f4f6 !important;
+    }
+
+    /* Collection header */
+    .css-11t9188,
+    [class*="CollectionTop"] {
+      background: var(--brand-white) !important;
     }
 
     /* Buttons */
-    button.css-1f3c68w,
-    button.css-1r7qjl7 {
+    button {
       font-family: 'Poppins', sans-serif !important;
       border-radius: 6px !important;
       font-weight: 500 !important;
       transition: all 0.2s ease !important;
     }
 
-    button.css-1f3c68w:hover,
-    button.css-1r7qjl7:hover {
-      transform: translateY(-1px) !important;
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Primary buttons */
+    button[class*="btn-primary"],
+    button[style*="background-color: rgb(3, 105, 161)"],
+    .css-1f3c68w {
+      background: var(--brand-primary) !important;
+      color: var(--brand-white) !important;
+    }
+
+    button[class*="btn-primary"]:hover,
+    .css-1f3c68w:hover {
+      background: var(--brand-primary-dark) !important;
       box-shadow: 0 4px 12px rgba(0, 170, 108, 0.3) !important;
     }
 
@@ -81,77 +110,72 @@
     input, textarea, select {
       font-family: 'Poppins', sans-serif !important;
       border-radius: 6px !important;
+      border: 1px solid var(--brand-border) !important;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--brand-primary) !important;
+      box-shadow: 0 0 0 3px rgba(0, 170, 108, 0.1) !important;
+      outline: none !important;
     }
 
     /* Headings */
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Poppins', sans-serif !important;
       font-weight: 600 !important;
+      color: var(--brand-dark) !important;
     }
 
-    /* Collection labels */
-    .collection-top {
-      border-bottom: 2px solid var(--brand-primary) !important;
-    }
-
-    /* Preview pane */
+    /* Collection cards */
+    [class*="CollectionContainer"],
     .css-1g7k21z {
+      background: var(--brand-white) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Search input */
+    input[placeholder*="Search"] {
       background: var(--brand-light) !important;
+      border: 1px solid var(--brand-border) !important;
+      border-radius: 6px !important;
     }
 
-    /* Loading screen */
-    #nc-root > div > div:first-child {
-      background: var(--brand-darker) !important;
-    }
-
-    /* Custom branding overlay */
-    .admin-brand-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: linear-gradient(135deg, var(--brand-darker) 0%, var(--brand-dark) 100%);
-      border-bottom: 2px solid var(--brand-primary);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .admin-brand-logo {
-      width: 40px;
-      height: 40px;
-      background: var(--brand-primary);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .admin-brand-text h1 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-
-    .admin-brand-text p {
-      margin: 0;
-      font-size: 11px;
-      color: var(--brand-text);
-      opacity: 0.7;
+    /* Login page */
+    .css-1i3v3j8 {
+      background: var(--brand-white) !important;
     }
 
     /* Editor hints */
     .field-hint {
       font-size: 12px;
-      color: #666;
+      color: var(--brand-gray);
       font-style: italic;
       margin-top: 4px;
+    }
+
+    /* Preview pane background */
+    [class*="PreviewPane"],
+    .preview-pane {
+      background: var(--brand-white) !important;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--brand-primary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--brand-primary-dark);
     }
   </style>
 </head>

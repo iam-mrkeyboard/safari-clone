@@ -756,11 +756,118 @@ function SiteSettingsPreview({ entry }) {
   ]);
 }
 
+// Pages Preview (generic — works for all page types)
+function PagesPreview({ entry }) {
+  const data = entry.get('data');
+  const heroImage = data.get('hero_image');
+  const heroTagline = data.get('hero_tagline');
+  const heroTitle = data.get('hero_title');
+  const heroDescription = data.get('hero_description');
+
+  const fieldKeys = data.keySeq().filter(k =>
+    !['hero_image', 'hero_tagline', 'hero_title', 'hero_description'].includes(k)
+  ).toArray();
+
+  const renderValue = (key, value) => {
+    if (!value) return null;
+    if (Immutable.List.isList(value) || Immutable.Map.isMap(value)) return null;
+    if (typeof value === 'string' && (value.startsWith('http') || value.startsWith('../../assets'))) {
+      return h('div', { style: { marginBottom: '12px' } }, [
+        h('p', { key: 'label', style: { fontSize: '11px', color: colors.gray, fontWeight: 600, textTransform: 'uppercase', margin: '0 0 4px', letterSpacing: '0.5px' } }, key.replace(/_/g, ' ')),
+        value.match(/\.(png|jpg|jpeg|webp|gif|svg)/i) ? h('img', { src: value, style: { maxWidth: '100%', maxHeight: '120px', borderRadius: '6px', objectFit: 'cover' } }) : h('p', { style: { fontSize: '13px', color: colors.dark, margin: 0, wordBreak: 'break-all' } }, value),
+      ]);
+    }
+    return h('div', { style: { marginBottom: '10px' } }, [
+      h('p', { key: 'label', style: { fontSize: '11px', color: colors.gray, fontWeight: 600, textTransform: 'uppercase', margin: '0 0 2px', letterSpacing: '0.5px' } }, key.replace(/_/g, ' ')),
+      h('p', { key: 'val', style: { fontSize: '13px', color: colors.dark, margin: 0, whiteSpace: 'pre-wrap' } }, String(value)),
+    ]);
+  };
+
+  const renderList = (key, list) => {
+    if (!list || list.size === 0) return null;
+    return h('div', { style: { marginBottom: '12px' } }, [
+      h('p', { key: 'label', style: { fontSize: '11px', color: colors.gray, fontWeight: 600, textTransform: 'uppercase', margin: '0 0 8px', letterSpacing: '0.5px' } }, key.replace(/_/g, ' ') + ' (' + list.size + ')'),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+        list.map((item, idx) => {
+          if (typeof item === 'string') {
+            return h('div', { key: idx, style: { background: colors.light, padding: '8px 12px', borderRadius: '6px', fontSize: '12px', color: colors.dark } }, item);
+          }
+          const entries = item.entrySeq().toArray();
+          return h('div', { key: idx, style: { background: colors.light, padding: '8px 12px', borderRadius: '6px', fontSize: '12px' } },
+            entries.map(([k, v]) =>
+              h('span', {
+                key: k,
+                style: { display: 'block', color: colors.dark, marginBottom: '2px' },
+              }, [
+                h('span', { style: { color: colors.gray, fontWeight: 600 } }, k + ': '),
+                h('span', {}, String(v)),
+              ])
+            )
+          );
+        }).toArray()
+      ),
+    ]);
+  };
+
+  const renderObject = (key, obj) => {
+    if (!obj) return null;
+    const entries = obj.entrySeq().toArray();
+    return h('div', { style: { marginBottom: '12px' } }, [
+      h('p', { key: 'label', style: { fontSize: '11px', color: colors.gray, fontWeight: 600, textTransform: 'uppercase', margin: '0 0 8px', letterSpacing: '0.5px' } }, key.replace(/_/g, ' ')),
+      h('div', { style: { background: colors.light, padding: '12px', borderRadius: '6px' } },
+        entries.map(([k, v]) =>
+          h('span', { key: k, style: { display: 'block', fontSize: '12px', color: colors.dark, marginBottom: '4px' } }, [
+            h('span', { style: { color: colors.gray, fontWeight: 600 } }, k + ': '),
+            h('span', {}, String(v)),
+          ])
+        )
+      ),
+    ]);
+  };
+
+  const bodySections = [];
+  const isList = (v) => v && v.map && typeof v.map === 'function' && v.toArray && typeof v.toArray === 'function';
+  const isMap = (v) => v && v.entrySeq && typeof v.entrySeq === 'function';
+
+  fieldKeys.forEach((key) => {
+    const value = data.get(key);
+    if (value == null) return;
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      bodySections.push(renderValue(key, value));
+    } else if (isList(value)) {
+      bodySections.push(renderList(key, value));
+    } else if (isMap(value)) {
+      bodySections.push(renderObject(key, value));
+    }
+  });
+
+  return h('div', {
+    style: {
+      fontFamily: "'Poppins', sans-serif",
+      maxWidth: '640px',
+      margin: '0 auto',
+      background: '#f3f4f6',
+      minHeight: '100vh',
+    },
+  }, [
+    heroImage && h('div', { style: { width: '100%', height: '200px', overflow: 'hidden' } },
+      h('img', { src: heroImage, style: { width: '100%', height: '100%', objectFit: 'cover' } })
+    ),
+    h('div', { style: { padding: '20px' } }, [
+      heroTagline && h('p', { style: { fontSize: '11px', color: colors.primary, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' } }, heroTagline),
+      heroTitle && h('h1', { style: { fontSize: '24px', fontWeight: 700, color: colors.dark, margin: '0 0 8px' } }, heroTitle),
+      heroDescription && h('p', { style: { fontSize: '13px', color: colors.gray, lineHeight: 1.6, margin: '0 0 20px' } }, heroDescription),
+      bodySections.length > 0 && h('div', { style: { borderTop: `1px solid ${colors.lightGray}`, paddingTop: '16px' } }, bodySections),
+    ]),
+  ]);
+}
+
 // Register preview templates
 CMS.registerPreviewTemplate('blog', BlogPreview);
 CMS.registerPreviewTemplate('tours', TourPreview);
 CMS.registerPreviewTemplate('homepage', HomepagePreview);
 CMS.registerPreviewTemplate('site', SiteSettingsPreview);
+CMS.registerPreviewTemplate('pages', PagesPreview);
 CMS.registerPreviewTemplate('testimonials', TestimonialPreview);
 CMS.registerPreviewTemplate('destinations', DestinationPreview);
 CMS.registerPreviewTemplate('categories', CategoryPreview);

@@ -177,6 +177,23 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--brand-primary-dark);
     }
+
+    @media (max-width: 768px) {
+      input, textarea, select, button {
+        font-size: 16px !important;
+        min-height: 44px;
+      }
+      [class*="SidebarContainer"],
+      nav[aria-label="Collections"] {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      nav[aria-label="Collections"] a,
+      nav[aria-label="Collections"] button {
+        margin: 4px 8px !important;
+        padding: 12px 16px !important;
+      }
+    }
   </style>
 </head>
 <body>

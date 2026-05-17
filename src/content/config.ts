@@ -143,7 +143,7 @@ const homepage = defineCollection({
             avatar: image(),
             rating: z.number(),
             title: z.string(),
-            date: z.string(),
+            date: z.coerce.date(),
             travel_type: z.string(),
             text: z.string(),
             video_url: z.string().optional(),

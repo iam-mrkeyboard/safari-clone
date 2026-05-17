@@ -686,10 +686,81 @@ function HomepagePreview({ entry }) {
   }, cards);
 }
 
+// Site Settings Preview
+function SiteSettingsPreview({ entry }) {
+  const siteName = entry.getIn(['data', 'meta', 'site_name']);
+  const siteUrl = entry.getIn(['data', 'meta', 'site_url']);
+  const whatsapp = entry.getIn(['data', 'whatsapp_number']);
+  const footer = entry.getIn(['data', 'footer']);
+  const social = footer && footer.get('social');
+
+  const card = (title, children) => h('div', {
+    style: {
+      background: colors.white,
+      borderRadius: '8px',
+      padding: '20px 24px',
+      marginBottom: '12px',
+      border: `1px solid ${colors.lightGray}`,
+      borderLeft: `4px solid ${colors.primary}`,
+    },
+  }, [
+    h('h3', { key: 'title', style: { fontSize: '14px', fontWeight: 600, color: colors.primaryDark, margin: '0 0 12px', textTransform: 'uppercase', letterSpacing: '0.5px' } }, title),
+    ...(Array.isArray(children) ? children : [children]),
+  ]);
+
+  const field = (label, value) =>
+    value ? h('div', { style: { marginBottom: '8px', fontSize: '13px' } }, [
+      h('span', { key: 'label', style: { color: colors.gray, fontWeight: 600, display: 'inline-block', minWidth: '120px' } }, label),
+      h('span', { key: 'value', style: { color: colors.dark } }, value),
+    ]) : null;
+
+  const linkField = (label, url) =>
+    url ? h('div', { style: { marginBottom: '6px', fontSize: '13px' } }, [
+      h('span', { key: 'label', style: { color: colors.gray, fontWeight: 600, display: 'inline-block', minWidth: '120px' } }, label),
+      h('a', { key: 'value', href: url, target: '_blank', style: { color: colors.primary, textDecoration: 'none' } }, url),
+    ]) : null;
+
+  return h('div', {
+    style: {
+      fontFamily: "'Poppins', sans-serif",
+      maxWidth: '640px',
+      margin: '0 auto',
+      padding: '20px',
+      background: '#f3f4f6',
+    },
+  }, [
+    card('Site Info', [
+      field('Site Name', siteName),
+      field('Site URL', siteUrl),
+      field('WhatsApp', whatsapp),
+    ]),
+    card('Footer — Newsletter', [
+      field('Heading', footer && footer.get('newsletter_heading')),
+      field('Text', footer && footer.get('newsletter_text')),
+      field('Button', footer && footer.get('newsletter_button')),
+    ]),
+    card('Footer — CTA', [
+      field('Heading', footer && footer.get('cta_heading')),
+      field('Text', footer && footer.get('cta_text')),
+      field('Button', footer && footer.get('cta_button')),
+      field('Button Link', footer && footer.get('cta_button_link')),
+    ]),
+    card('Footer — Copyright', field('Copyright', footer && footer.get('copyright'))),
+    card('Social Links', [
+      linkField('TripAdvisor', social && social.get('tripadvisor_url')),
+      linkField('Instagram', social && social.get('instagram_url')),
+      linkField('Facebook', social && social.get('facebook_url')),
+      linkField('YouTube', social && social.get('youtube_url')),
+      linkField('TikTok', social && social.get('tiktok_url')),
+    ]),
+  ]);
+}
+
 // Register preview templates
 CMS.registerPreviewTemplate('blog', BlogPreview);
 CMS.registerPreviewTemplate('tours', TourPreview);
 CMS.registerPreviewTemplate('homepage', HomepagePreview);
+CMS.registerPreviewTemplate('site', SiteSettingsPreview);
 CMS.registerPreviewTemplate('testimonials', TestimonialPreview);
 CMS.registerPreviewTemplate('destinations', DestinationPreview);
 CMS.registerPreviewTemplate('categories', CategoryPreview);
